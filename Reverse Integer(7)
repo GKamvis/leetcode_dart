@@ -1,0 +1,56 @@
+import 'dart:math';
+
+class Solution {
+  int reverse(int x) {
+     bool isnegative = false;
+     if(x<0){
+       x= x*-1;
+       isnegative = true;
+     }
+     if( x == 0 )
+       return 0;
+
+     if(x <=  pow(-2, 31).toInt()){
+       if(isnegative){
+       }
+     }
+
+     if(x >=pow(2, 31).toInt() -1)
+       return 0;
+     var y =x.toString().length;
+
+     int sum = 0;
+     int a = 0;
+     var powten = 0;
+     for(int i = 0 ; i < y ; i++){
+       a = x % 10;
+       x = x~/10;
+       powten = pow(10, y-i-1).toInt();
+       sum  +=  powten*a;
+     }
+
+     if(sum>= pow(2, 31).toInt()-1){
+       return 0;
+
+     }
+     else{
+       if(isnegative){
+         return sum*-1;
+       }
+       return sum;
+     }
+     if(isnegative){
+
+       return -1*sum;
+     }
+
+   }
+
+  }
+
+void main() {
+   Solution sol =  Solution();
+   int x = 3212;
+  print(sol.reverse(x));
+   
+}
