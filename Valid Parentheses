@@ -1,0 +1,30 @@
+class Solution {
+  bool isValid(String s) {
+    List<String> stack = [];
+    Map<String, String> mapping = {
+      ')': '(',
+      '}': '{',
+      ']': '['
+    };
+
+    for (int i = 0; i < s.length; i++) {
+      String c = s[i];
+      if (mapping.containsKey(c)) {
+        String topElement = stack.isNotEmpty ? stack.removeLast() : '!';
+        if (topElement != mapping[c]) {
+          return false;
+        }
+      } else {
+        stack.add(c);
+      }
+    }
+    return stack.isEmpty;
+  }
+}
+
+void main() {
+   Solution sol =  Solution();
+  var  s = "()[]{}";
+  print(sol.isValid(s));
+   
+}
