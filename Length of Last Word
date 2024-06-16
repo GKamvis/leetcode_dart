@@ -1,0 +1,17 @@
+class Solution{
+int lengthOfLastWord(String s) {
+  List<String> words = s.trim().split(' ');
+
+  if (words.isEmpty) {
+    return 0;
+  }
+  return words.last.length;
+}
+}
+
+void main() {
+   Solution sol =  Solution();
+  String s = "Hello World";
+  print(sol.lengthOfLastWord(s));
+   
+}
