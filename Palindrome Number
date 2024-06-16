@@ -1,0 +1,25 @@
+class Solution {
+  dynamic isPalindrome(int x) {
+    var b = x.toString().split("").reversed.toList();
+    var a = x.toString().split("");
+    int counter = 0;
+    for(int i = 0 ; i <a.length; i++){
+      if(a[i] == b[i]){
+        counter++;
+      }
+    }
+if(counter == a.length){
+  return true;
+}
+else{
+  return false;
+}
+  }
+}
+
+void main() {
+   Solution sol =  Solution();
+   int x = 32123;
+  print(sol.isPalindrome(x));
+   
+}
