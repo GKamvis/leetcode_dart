@@ -1,0 +1,25 @@
+import 'dart:math';
+
+class Solution {
+  bool isPowerOfTwo(int n) {
+    int x;
+    for(x =-32;x<32;x++){
+      if(n==pow(2, x)){ 
+        return true;
+        break;
+
+      }
+    }
+
+
+    return false;
+    
+  }
+}
+void main() {
+   Solution sol =  Solution();
+ 
+  int n = 5;
+  print(sol.isPowerOfTwo(n));
+   
+}
