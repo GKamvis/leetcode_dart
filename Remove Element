@@ -1,0 +1,31 @@
+class Solution {
+  int removeElement(List<int> nums, int val) {
+    
+  
+    int counter = nums.length;
+        
+    nums.retainWhere((element) {
+      if(element == val){
+        counter--;
+        return false;
+        
+      }
+      else{
+        return true;
+      }
+      
+    });
+    
+
+     
+    return counter;
+   
+  }
+}
+void main() {
+   Solution sol =  Solution();
+  var nums = [0,1,2,2,3,0,4,2];
+  int val = 2;
+  print(sol.removeElement(nums, val));
+   
+}
