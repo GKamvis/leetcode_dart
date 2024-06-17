@@ -1,0 +1,40 @@
+import 'dart:math';
+
+
+class Solution {
+  bool isPowerOfThree(int n) {
+
+    bool forNegative(int n){
+      for(int i = -32 ; i<=0 ; i++){
+        if(pow(3, i) == n ){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    bool forPositive(int n){
+      for(int i = 0 ; i<=32 ; i++){
+        if(pow(3, i) == n ){
+          return true;
+        }
+      }
+       return false;
+    }
+
+    if(n>0){
+      return forPositive(n);
+    }else{
+      return forNegative(n);
+    } 
+  }
+}
+
+void main() {
+   Solution sol =  Solution();
+ 
+  int n = 4782969;
+  print(sol.isPowerOfThree(n));
+   
+}
+
