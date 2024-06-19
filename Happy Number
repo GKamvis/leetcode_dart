@@ -1,0 +1,31 @@
+import 'dart:math';
+class Solution {
+  bool isHappy(int n) {
+
+    int next(n){
+      double sum = 0;
+      while(n > 0){
+        sum += pow(n % 10, 2);
+        n ~/= 10;
+      }
+      return sum.toInt();
+    }
+
+
+
+    Set<int> seen = {};
+    while(n != 1 && !seen.contains(n)){
+      seen.add(n);
+      n = next(n);
+    }
+
+    return n==1;
+  
+      
+    } 
+  }
+void main() {
+   Solution sol = Solution();
+    int n =2;
+    print(sol.isHappy(n));
+}
