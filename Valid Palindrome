@@ -1,0 +1,35 @@
+
+class Solution {
+  bool isPalindrome(String s) {
+    String list = s.toLowerCase()
+        .replaceAll(RegExp('[^a-zA-Z0-9]'), '');
+        String newlist = list.split('').reversed.join();
+     
+         if(list==newlist) return true;
+         else return false; 
+
+  }
+}
+
+void main() {
+   Solution sol = Solution();
+    String s = "A man, a plan, b  canal: Panama";
+   print(sol.isPalindrome(s));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
