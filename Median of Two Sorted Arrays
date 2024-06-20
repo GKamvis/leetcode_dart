@@ -1,0 +1,27 @@
+class Solution {
+  double findMedianSortedArrays(List<int> nums1, List<int> nums2) {
+    var mergedList = [];
+    mergedList.addAll(nums1);
+    mergedList.addAll(nums2);
+    mergedList.sort();
+    int len = mergedList.length;
+    if(len == 0 ) return 0.0;
+    if(len % 2 ==1) {
+      return mergedList[len~/2]/1.0;
+    }
+    else{
+
+      return (mergedList[len~/2 -1] + mergedList[len~/2])/2.0;
+    }
+
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> nums1 = [0 , 0 , 0]; // 1 2 3  4 5 6 8 9
+  List<int> nums2 = [0 , 0];
+  print(sol.findMedianSortedArrays(nums1 , nums2));
+
+
+}
