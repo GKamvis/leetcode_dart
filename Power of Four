@@ -1,0 +1,47 @@
+// yada sadəcə bir sətir kod ilə  
+//   return n>0 && n%3==1 && n&(n-1)==0;  
+//  n&(n-1)==0  & burada bitwise operatorudur  ikilik koda çevriləndə   n  = 8        
+// n = '1111'  n-1 = '0111'    n&(n-1) = 0000   / bu istənilən 4-ün qüvvətində belədir
+
+import 'dart:math';
+class Solution {
+  bool isPowerOfFour(int n) {
+    bool result = false;
+     
+       if(n<1){
+         for(int i = -32; i< 0; i++){
+            if(n == pow(4, i)){
+                result =  true;
+              break;
+            }
+            else{
+                result =  false;
+            }
+        }
+         
+       }
+    else{
+      
+      for(int i = 0; i < 32 ; i++){
+            if(n == pow(4, i)){
+                result =true;
+                break;
+
+            }
+            else{
+                result =  false;
+            }
+        } 
+    }
+    
+    return result;
+
+
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  int n = 4;
+  print(sol.isPowerOfFour(n));
+}
