@@ -1,0 +1,28 @@
+
+class Solution {
+  int mySqrt(int x) {
+    int left = 0;
+    int right = x~/2 +1;
+    while(left<right){
+    int mid = left + (right-left)~/2+1;
+    int square = mid*mid;
+    if(square == x){
+      return mid;
+    }
+    else if(square < x){
+      left = mid;
+    }
+    else{
+      right = mid-1;
+    }
+    }
+    return left;
+  }
+}
+
+void main(){
+  Solution sol = Solution();
+  int x = 4;
+  print(sol.mySqrt(x));
+}
+
