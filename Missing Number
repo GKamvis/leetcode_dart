@@ -1,0 +1,17 @@
+
+class Solution {
+  int  missingNumber(List<int> nums) {
+      nums.sort();
+      for(int i = 0 ; i< nums.length; i++){
+        if(i != nums[i]){
+          return i;
+        }
+      }
+      return nums.length;
+  }
+}
+void main(){
+  Solution sol = Solution();
+  List<int> nums= [0,1];
+  print(sol.missingNumber(nums));
+}
