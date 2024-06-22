@@ -1,0 +1,33 @@
+
+class Solution {
+  int  singleNumber(List<int> nums) {
+    int unique = 0 ;
+    for(int number in nums){
+      unique  = unique ^ number;
+    }
+    //  [4,1,2,1,2];
+    // 100 ^ 000  = 100
+    //100 ^ 001 =   101
+    //101 ^ 010 =    111
+    //111 ^ 001 =    110
+    //110 ^ 010 =    100
+
+    //   [1,1,2,2,4]
+    //001 ^ 000 =   001
+    //001 ^ 001 =   000
+    //000 ^ 010 =   010
+    //010 ^ 010 =   000
+    //000 ^ 100 =   100
+
+    return unique;
+
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> nums =[4,1,2,1,2];
+  print(sol.singleNumber(nums));
+}
+
+
