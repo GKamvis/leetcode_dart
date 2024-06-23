@@ -1,0 +1,20 @@
+
+class Solution {
+  int addDigits(int num) {
+    while(num>9){
+      int sum = 0;
+      while(num > 0){
+        sum +=num%10;
+        num ~/=10;
+      }
+      num = sum;
+    }
+    return num;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  int num = 38;
+  print(sol.addDigits(num));
+}
