@@ -1,0 +1,33 @@
+using System;
+
+public class Solution {
+    public string AddBinary(string a, string b) {
+        int maxLength = Math.Max(a.Length, b.Length);
+        a = a.PadLeft(maxLength, '0');
+        b = b.PadLeft(maxLength, '0');
+        int carry = 0;
+        string result = "";
+
+        for (int i = maxLength - 1; i >= 0; i--) {
+            int sum = carry;
+            sum += a[i] - '0';
+            sum += b[i] - '0';
+            carry = sum / 2;
+            result = (sum % 2).ToString() + result;
+        }
+        if (carry != 0) {
+            result = carry.ToString() + result;
+        }
+
+        return result;
+    }
+}
+
+public class Program {
+    public static void Main() {
+        Solution sol = new Solution();
+        string a = "10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101";
+        string b = "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011";
+        Console.WriteLine(sol.AddBinary(a, b));
+    }
+}
