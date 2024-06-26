@@ -1,0 +1,23 @@
+class Solution {
+  int? maxProfit(List<int> prices){
+    int minPrice = prices[0];
+    int maxProfit = 0;
+
+    for(int i = 1 ; i < prices.length; i++){
+      if(minPrice > prices[i]){
+        minPrice = prices[i];
+      }
+      else if(prices[i] - minPrice > maxProfit){
+        maxProfit = prices[i] -minPrice;
+      }
+    }
+    return maxProfit;
+
+  }
+}
+
+//void main(){
+//Solution sol = Solution();
+//List<int> prices = [ 1 , 2, 5, 7,20];
+//print(sol.maxProfit(prices));
+//}
