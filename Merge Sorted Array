@@ -1,0 +1,20 @@
+
+class Solution {
+  void merge(List<int> nums1, int m, List<int> nums2, int n) {
+    var list1 = nums1.sublist(0, m);
+    var list2 = nums2.sublist(0 , n);
+    nums1.clear();
+    nums1.addAll(list2+list1);
+    nums1.sort();
+    print(nums1);
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int>  nums1 = [1,2,3,0,0,0];
+  int m = 3;
+  List<int> nums2 = [2,5,6];
+  int n = 3;
+  sol.merge( nums1 , m , nums2 ,  n , );
+}
