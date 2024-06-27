@@ -1,0 +1,12 @@
+
+class Solution {
+  bool isNumeric(String s) {
+    if(s =="Infinity"|| s== "-Infinity"||s== "+Infinity" ) return false;
+    return double.tryParse(s) != null;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  print(solution.isNumeric("123")); // true
+}
