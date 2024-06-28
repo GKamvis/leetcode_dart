@@ -1,0 +1,28 @@
+class Solution {
+  void rotate(List<int> nums, int k) {
+    int n = nums.length;
+    if(k>n){
+      k= k%n;
+    }
+
+    List<int> list =[];
+    for(int i = n  -k; i<n; i++){
+      list.add(nums[i]);
+    }
+     var sublist = nums.sublist(0, n-k);
+    nums.clear();
+    nums.addAll(list);
+    nums.addAll(sublist);
+    print(nums);
+
+  }
+
+}
+
+
+void main() {
+  Solution solution = Solution();
+  List<int> nums = [-1];
+  int k = 2;
+  solution.rotate(nums, k);
+}
