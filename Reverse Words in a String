@@ -1,0 +1,31 @@
+class Solution {
+  String reverseWords(String s) {
+    s = s.trim();
+    // List<String> list =[];
+    // int flag = 0;
+    // int count = 0;
+    // for(int i = 0 ; i < s.length;i++){                                    // Komentdə olan kodlar sadəcə stringi necə parçaldığını təmsil edir
+    //   count++;
+    //   if(s[i]==' '){
+    //     flag =1;
+    //     count=0;
+    //   }
+    //   if(flag==0){
+    //     list.addAll([s[i]]);
+    //   }
+    //   if(flag==1){
+    //     list.add(' ');
+    //   }
+    //   flag =0;
+    //
+    // }
+    //   s = list.join('');
+    return s.replaceAll(RegExp(r'\s+'), ' ').split(" ").reversed.join(" ");
+  }
+}
+void main() {
+  Solution solution = Solution();
+  String s = "  the     sky is blue";
+  print(solution.reverseWords(s));
+}
+
