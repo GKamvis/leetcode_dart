@@ -1,0 +1,23 @@
+class Solution {
+  int? lengthOfLongestSubstring(String s) {
+    int maxLenhth= 0;
+    Set charSet = {};
+    int l = 0;
+    for(int r = 0 ; r < s.length; r++){
+      while(charSet.contains(s[r])){
+        charSet.remove(s[l]);
+        l++;
+      }
+      charSet.add(s[r]);
+      maxLenhth = max(maxLenhth, r - l +1);
+    }
+    return maxLenhth;
+
+  }
+}
+void main() {
+  Solution solution = Solution();
+  String s = "pwwkew";
+  print(solution.lengthOfLongestSubstring(s));
+}
+
