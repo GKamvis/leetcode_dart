@@ -1,0 +1,27 @@
+
+class Solution {
+  int? minSubArrayLen(int target, List<int> nums) {
+    int l = 0;
+    int sum = 0;
+    int r = 0 ;
+    double minLength = double.infinity;
+    for( r = 0 ; r<nums.length; r++)
+      sum+=nums[r];
+       while(sum>=target){
+        minLength = min(minLength,r-l+1).toDouble();
+        sum -=nums[l];
+        l++;
+     }
+     return minLength < double.infinity ? minLength.toInt(): 0;
+  }
+}
+void main() {
+  Solution solution = Solution();
+  List<int> nums = [2,3,1,2,4,3];
+  int target = 7;
+  print(solution.minSubArrayLen( target , nums));
+}
+
+
+
+
