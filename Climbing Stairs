@@ -19,6 +19,19 @@ bu kodda fib(55) kimi bir dəyər axtarsaq bir neçə saniyə lazim olacaq cavab
   }       
 
 
+optimal həll
+void main() {
+  
+  
+  int? fib(n , Map<int , int?> memo ){
+    if(memo.containsKey(n)) return memo[n];
+    if(n<=2) return 1;
+    memo[n] =  fib(n-1 , memo)! + fib(n-2 , memo)!;
+    return memo[n];
+  }
+   Map<int , int?> memo  = {};
+  print(fib(50 , memo ));
+}
 
 
 ------------------------------------------------------
