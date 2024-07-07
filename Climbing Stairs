@@ -1,3 +1,46 @@
+/* bu kod bir növ fibonacci ədədinintapilmasi ilə bağlıdır
+ bu yol ilə  hesablanmış nodları birdə hesablamır , standart  fibonacci həlində  aşağıdaki kimi hesalanır 
+böyük ehtimala O(2^n) time complexitysinə malikdir.
+
+bu kodda fib(55) kimi bir dəyər axtarsaq bir neçə saniyə lazim olacaq cavabı tapmaq üçün.
+  tutaqki                                  5 (5) // 3+2 = 5   fib(5) ==> 5 
+
+                             3(2)                              4(3)
+
+                          1(1)  2(1)   //1+1 = 2        3 (2)        2(1)   // 1 + 2 = 3
+
+                                                     1(1)      2(1)    
+
+
+               
+  int? fib(n ){
+    if(n<=2) return 1;
+    return fib(n-1)! + fib(n-2)!;
+  }       
+
+
+
+
+------------------------------------------------------
+
+
+class Solution {
+  Map<int, int> _memo = {};
+
+  int climbStairs(int n) {
+    return _climbStairsWithMemo(n);
+  }
+
+  int _climbStairsWithMemo(int n) {
+    if (_memo.containsKey(n)) return _memo[n]!;
+    if (n == 1) return 1;
+    if (n == 2) return 2;
+    _memo[n] = _climbStairsWithMemo(n - 1) + _climbStairsWithMemo(n - 2);
+    return _memo[n]!;
+  }
+}
+*/
+
 class Solution {
   int climbStairs(int n) {
     if(n == 1) return 1;
