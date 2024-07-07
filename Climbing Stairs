@@ -1,0 +1,20 @@
+class Solution {
+  int climbStairs(int n) {
+    if(n == 1) return 1;
+    if(n == 2) return 2;
+    int curent = 2;
+    int preview = 1;
+    for(int i = 3 ; i <= n ; i++){
+        int temp = curent;
+        curent = preview + curent;
+        preview = temp;
+
+    }
+    return curent;
+  }
+}
+void main(){
+Solution solution = Solution();
+int n = 23; 
+print(solution.climpStairs(n));
+}
