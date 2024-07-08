@@ -1,0 +1,32 @@
+// O(N) time complexity 
+// O(N) space complexity
+/*
+Əgər stringləri sıralasaq time complexity o(nLogn) olacaq
+*/
+
+
+class Solution {
+  bool? isAnagram(String s, String t) {
+    if(s.length != t.length) return false;
+    Map<String , int > mapS = {};
+    Map<String , int> mapT = {};
+
+    for(int i = 0 ; i < s.length ; i++){
+      mapS[s[i]] = (mapS[s[i]] ?? 0) +1;
+      mapT[t[i]] = (mapT[t[i]] ?? 0) +1;
+    }
+    for(var key in mapT.keys){
+      if(mapT[key] != mapS[key]) return false;
+
+    }
+   return true;
+
+  }
+}
+void main(){
+  Solution solution = Solution();
+  String s = "anagram";
+  String t = "nagaram";
+  print(solution.isAnagram(t , s));
+}
+
