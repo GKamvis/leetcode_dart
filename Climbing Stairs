@@ -1,4 +1,4 @@
-/* bu kod bir növ fibonacci ədədinintapilmasi ilə bağlıdır
+/* bu kod bir növ fibonacci ədədinin tapilmasi ilə bağlıdır
  bu yol ilə  hesablanmış nodları birdə hesablamır , standart  fibonacci həlində  aşağıdaki kimi hesalanır 
 böyük ehtimala O(2^n) time complexitysinə malikdir.
 
