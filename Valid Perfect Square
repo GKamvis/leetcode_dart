@@ -1,3 +1,7 @@
+// time complexity O(log n) 
+// Space complexity o(1)
+
+
 class Solution {
   bool isPerfectSquare(int num) {
     int l = 0;
