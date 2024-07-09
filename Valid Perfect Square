@@ -1,0 +1,24 @@
+class Solution {
+  bool isPerfectSquare(int num) {
+    int l = 0;
+    int r = num; 
+    while(l <= r){
+        int mid = (l+r)~/2;
+        int midSquare = mid*mid;
+        if(midSquare == num) return true;
+
+        if(midSquare < num){
+            l= mid +1;
+        }
+        else r =mid-1;
+    }
+    return false;
+  }
+}
+
+void main(){
+Solution sol = Solution();
+int num = 12;
+print(sol.isPerfectSquare(num));
+}
+
