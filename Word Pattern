@@ -1,0 +1,23 @@
+class Solution {
+  bool? wordPattern(String pattern, String s) {
+    final list = s.split(' ');
+    if(list.length!=pattern.length) return false;
+    final paternMap = {};
+    final listMap =  {};
+    for(int i = 0 ;i < pattern.length ; i++){
+      int pIndex = paternMap[pattern[i]] ?? -1;
+      int sIndex = listMap[list[i]] ?? -1;
+      if(pIndex != sIndex) return false;
+      paternMap[pattern[i]] = i;
+      listMap[list[i]] = i;
+    }
+    return true;
+  }
+}
+
+void main() {
+ Solution sol = Solution();
+  String pattern = "abba";
+  String s = "dog cat fat dog";
+  print(sol.wordPattern(pattern , s));
+}
