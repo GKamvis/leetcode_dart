@@ -1,0 +1,20 @@
+class Solution {
+  int minOperations(List<String> logs) {
+    int n = 0;
+
+    for(var log in logs){
+        if(log == "../"){
+            if(n > 0) n--;
+        }
+        else if(log !="./") n++;
+    }
+
+    return n;
+  }
+}
+
+void main(){
+Solution sol = Solution();
+List<String> logs = ["d1/","d2/","../","d21/","./"];
+print(sol.minOperations(logs));
+}
