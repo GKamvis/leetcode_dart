@@ -1,0 +1,33 @@
+class Solution {
+  int minEatingSpeed(List<int> piles, int h) {
+    bool min_k(k){
+        int hours = 0;
+        for(var p in piles){
+            hours +=(p / k).ceil();
+        }
+        return hours<=h;
+    }
+
+    int l = 1;
+    int r = piles.reduce((curr, next) => curr > next? curr: next);
+
+    while(l < r){
+        int k =(l + r)~/2;
+
+        if(min_k(k)){
+            r = k;
+        }
+        else{ 
+            l = k+1;
+        }
+    }
+    return r;
+  }
+}
+
+void main() {
+Solution sol = Solution();
+List<int>  piles = [3,6,7,11];
+int h = 8;
+print(sol.minEatingSpeed(piles , h));
+}
