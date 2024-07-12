@@ -1,0 +1,76 @@
+/*
+Time Complexity : O(Log(divident/ dvisor))
+Space Complexity O(1)
+   while (dividend >= (temp << 1)) {
+        temp <<= 1;
+        multiple <<= 1;
+      }
+
+bu kodda shif operatoru istifadə olunub aşağıdakı kodla məntiq olaraq fərqi yoxdur
+
+//       while (dividend >= (temp * 2)) {
+//         temp *= 2;
+//         multiple *= 2;
+//       }
+*/
+
+
+Niyə << 1 və ya 2-ə vururuq? Sadəcə efektivliyi artırmaq tək tək yoxladıqda time limite exceed xətası alırıq.
+
+class Solution {
+  int? divide(int dividend, int divisor) {
+    int maxI = 2147483647;
+    int minI = -2147483648;
+    if (dividend == 0) return 0;
+    if (divisor == 0) throw ArgumentError("0 ola bilməz");
+    int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+    dividend = dividend.abs();
+    divisor = divisor.abs();
+    
+    int res = 0;
+    while (dividend >= divisor) {
+      int temp = divisor;
+      int multiple = 1;
+      
+      while (dividend >= (temp << 1)) {
+        temp <<= 1;
+        multiple <<= 1;
+      }
+      
+      dividend -= temp;
+      res += multiple;
+    }
+
+    return min(max(res * sign, minI), maxI);
+  }
+}
+
+// import 'dart:math';
+
+// class Solution {
+//   int? divide(int dividend, int divisor) {
+//     int maxI = 2147483647;
+//     int minI = -2147483648;
+//     if (dividend == 0) return 0;
+//     if (divisor == 0) throw ArgumentError("0 ola bilməz");
+//     int sign = (dividend < 0) ^ (divisor < 0) ? -1 : 1;
+//     dividend = dividend.abs();
+//     divisor = divisor.abs();
+
+//     int res = 0;
+//     while (dividend >= divisor) {
+//       int temp = divisor;
+//       int multiple = 1;
+
+//       while (dividend >= (temp * 2)) {
+//         temp *= 2;
+//         multiple *= 2;
+//       }
+
+//       dividend -= temp;
+//       res += multiple;
+//     }
+
+//     return min(max(res * sign, minI), maxI);
+//   }
+// }
