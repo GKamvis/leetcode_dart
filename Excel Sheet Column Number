@@ -1,0 +1,27 @@
+/*
+time complexity - O(n)     burada n - columnTitle stringinin uzunluğudur
+space complexity - O(1)   int res və int element String columnTitle(bu girişdə verilib yeni yaddaş sahəsi tələb etmir)
+
+A həfi 65 dən başlayır ascci cədvəlində ona görədə hər dəfə 64 çıxsaq  və hər A-Z aralığının 26 vhid olduğunu nəzərdə tutsaq(yəni AB 26 + 2 , AZ 26 + 26)nəticə tapılır. 
+kodun daha anlaşıqlı olması üçün belədə baxa bilərik.    res = (res* 26) + (columnTitle[i].codeUnitAt(0) - 64);
+
+*/
+
+import 'dart:math';
+
+class Solution {
+  int? titleToNumber(String columnTitle) {
+    int res = 0;
+    for (int i = 0; i < columnTitle.length; i++) {
+      int element = columnTitle.codeUnits[i] - 64;
+      res = res * 26 + element;
+    }
+    return res;
+  }
+}
+
+void main() {
+  Solution sol = new Solution();
+  String columnTitle = "AB";
+  print(sol.titleToNumber(columnTitle));
+}
