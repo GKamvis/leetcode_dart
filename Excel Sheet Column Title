@@ -1,0 +1,26 @@
+/*
+Time complexity O(LogN)
+Space complexity O(1)
+codeUnitAt(0) Ascci koda çevirir 
+String.fromCharCode  ascii koddan uyğun hərifə çevirir
+*/
+class Solution {
+  String convertToTitle(int columnNumber) {
+    String s = '';
+    String A = 'A';
+    while (columnNumber > 0) {
+      int offset = (columnNumber - 1) % 26;
+      print(offset);
+      s += String.fromCharCode((A.codeUnitAt(0) + offset));
+      columnNumber = (columnNumber - 1) ~/ 26;
+    }
+    print(s);
+    return s.split('').reversed.join('');
+  }
+}
+
+void main() {
+  Solution sol = new Solution();
+  int columnNumber = 28;
+  print(sol.convertToTitle(columnNumber));
+}
