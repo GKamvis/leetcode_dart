@@ -1,0 +1,50 @@
+/*
+Time Complexity: O(n) for dövrü n qədər iterasiya edir , yoxlamalar O(1)-dir Nəticədə O(N)
+Space Complexity: O(n)
+*/
+// class Solution {
+//   List<String> fizzBuzz(int n) {
+//     List<String> answer = [];
+//     bool divisible_by_3(int i) {
+//       return i % 3 == 0;
+//     }
+
+//     bool divisible_by_5(int i) {
+//       return i % 5 == 0;
+//     }
+
+//     for (int i = 1; i <= n; i++) {
+//       if (divisible_by_3(i) && divisible_by_5(i)) {
+//         answer.add("FizzBuzz");
+//       } else if (divisible_by_3(i))
+//         answer.add("Fizz");
+//       else if (divisible_by_5(i))
+//         answer.add("Buzz");
+//       else
+//         answer.add(i.toString());
+//     }
+//     return answer;
+//   }
+// }
+class Solution {
+  List<String> fizzBuzz(int n) {
+    List<String> answer = [];
+
+    for (int i = 1; i <= n; i++) {
+      String result = '';             // kilif nöqtəsi budur.Hər dövrdə result boş stringə bərəbər olmalıdır.
+      if (i % 3 == 0) result += 'Fizz';
+      if (i % 5 == 0) result += 'Buzz';
+      if (result.isEmpty) result = i.toString();
+      answer.add(result);
+    }
+
+    return answer;
+  }
+}
+
+
+void main() {
+  Solution sol = Solution();
+  int n = 3;
+  print(sol.fizzBuzz(n));
+}
