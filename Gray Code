@@ -1,0 +1,48 @@
+
+/*
+Time complexity - O(2^n)  for dövrü 2:n qədər dövr edib.i ^ (i >> 1) əməliyyatı sabit vaxt tələb edir deyə çoda təhsir etmir.
+Space complexity - o(2^n) listdə 2^n qədər element saxlanib
+
+i ^ (i >> 1)  ^ Xo(Exculisive or) operatorudur. >> sağa sürüşdürmə(Bu əslində 2-yə bölməklə eyni işi görür)      (<< buda 2-ə vurmağı təmsil edir.) BU operatorla bir səviyəsində işləyir. Qeyd etditim 2-ə bölmələr integer bölünməsidir.
+i >> i  110  ==> 011 
+        111  ==> 011
+        001  ==> 000
+
+i ^     110  ^ 011 ==> 101
+        111 ^ 011 ==> 100
+        001 ^ 000 ==> 001
+
+ məsələn n = 2 olduqda pow(2, n ) = 4 olur, dövr 4 dəfə davam edəcək.
+dövr başladı i = 0 
+list.add( 0 ^ (0 >> 1))  list.add(0) 
+i= 1
+list.add( 1 ^ (1 >> 1))  list.add(1)
+i=2
+list.add( 2 ^ (2 >> 1))  list.add(3) 
+i = 3 
+list.add( 3 ^ (3 >> 1))  list.add(2)  
+
+dövr bittdi
+
+list = [0 , 1 , 3, 2] 
+
+
+
+*/
+import 'dart:math';
+
+class Solution {
+  List<int>? grayCode(int n) {
+    List<int> list = [];
+    for (int i = 0; i < pow(2, n); i++) {
+      list.add(i ^ (i >> 1));
+    }
+    return list;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  int n = 3;
+  print(sol.grayCode(n));
+}
