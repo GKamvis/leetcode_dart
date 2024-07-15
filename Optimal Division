@@ -1,0 +1,38 @@
+/*
+Time Complexity - O(N) yoxlamalar stabil O(1) for dövrü N qədər dövr edir deyə O(N)
+Space Complexity - 0(1)  
+
+*/
+class Solution {
+  String optimalDivision(List<int> nums) {
+    String a = nums[0].toString();
+    String b = "";
+    if (nums.length == 1)
+      return nums[0].toString();
+    else if (nums.length == 2) {
+      b = nums[0].toString() + "/" + nums[1].toString();
+      return b;
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      if (i == 0) {
+        b = nums[0].toString();
+        b = b + "/";
+        b = b + "(";
+      } else if (i == (nums.length - 1))
+        b = b + nums[i].toString();
+      else {
+        b = b + nums[i].toString();
+        b = b + "/";
+      }
+    }
+    b = b + ")";
+    return b;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> nums = [1000, 100, 10, 2];
+  print(sol.optimalDivision(nums));
+}
