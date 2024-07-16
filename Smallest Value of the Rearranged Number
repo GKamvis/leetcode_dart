@@ -1,6 +1,7 @@
 /*
 Time Complexity - O(n log n) ən başqa bir while var o(n) sonra 2 for müsbət ədələr üçün  O(n log n) olur və Snum.join() və int.parse() O(n)  nəticədə O(NlogN)
 Space Complexity O(N) bir list var və uzunluğu qədər resurs sərf edib.
+ for dövrlərinin yerinə .sort() və ya hər hansi bir sorting alqoritmidə istifadə edilə bilər mən insertion sort istifadə etdim. 
 */
 
 class Solution {
