@@ -1,0 +1,66 @@
+/*
+Time Complexity - O(n log n) ən başqa bir while var o(n) sonra 2 for müsbət ədələr üçün  O(n log n) olur və Snum.join() və int.parse() O(n)  nəticədə O(NlogN)
+Space Complexity O(N) bir list var və uzunluğu qədər resurs sərf edib.
+*/
+
+class Solution {
+  int smallestNumber(int num) {
+    int sign = 1;
+   if(num == 0) return 0;
+
+
+    if (num.isNegative) {
+      sign = -1;
+      num *= -1;
+    }
+    List Snum = [];
+    while (num > 0) {
+      Snum.add(num % 10);
+      num ~/= 10;
+    }
+    if (sign == 1) {
+      for (int i = 1; i < Snum.length; i++) {
+        int key = Snum[i];
+        int j = i - 1;
+        while (j >= 0 && Snum[j] > key) {
+          Snum[j + 1] = Snum[j];
+          j--;
+        }
+        Snum[j + 1] = key;
+      }
+      print('-----');
+      print(Snum);
+      if (Snum[0] == 0) {
+        for (int i = 1; i < Snum.length; i++) {
+          if (Snum[i] != 0) {
+            int temp = Snum[0];
+            Snum[0] = Snum[i];
+            Snum[i] = temp;
+            break;
+          }
+        }
+      }
+
+      print(Snum);
+    } else if (sign == -1) {
+      for (int i = 1; i < Snum.length; i++) {
+        int key = Snum[i];
+        int j = i - 1;
+        while (j >= 0 && Snum[j] < key) {
+          Snum[j + 1] = Snum[j];
+          j--;
+        }
+        Snum[j + 1] = key;
+      }
+    }
+    String concatenatedString = Snum.join();
+    int res = int.parse(concatenatedString);
+    return res * sign;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  int num = 95005;
+  print(sol.smallestNumber(num));
+}
