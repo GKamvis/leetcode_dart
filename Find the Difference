@@ -1,0 +1,28 @@
+/*
+Time Complexity O(N) hər dövr n qədər iterasiya edir
+Space Complexity O(1) 
+Bu məsələdə ilk həllərə baxdım amma efektiv deyildi 2 list yaradıb s və t split() methodu ilə listə mənimsədirdilər ,sonrada listlərdə müqaisə aparılırdı.
+
+Bu yaxınlaşmada hərflərin ascci kodlarını cəmləyib sonrada bir birindən çıxsam t stringinə əlavə olunan 1 hərfin ascci kodu qalır və onuda stringə çevirdikdə effektiv şəkildə həll olunur.
+*/
+class Solution {
+  String findTheDifference(String s, String t) {
+    int sSum = 0;
+    int tSum = 0;
+    for (int i = 0; i < t.length; i++) {
+      tSum += t.codeUnitAt(i);
+    }
+    for (int j = 0; j < s.length; j++) {
+      sSum += s.codeUnitAt(j);
+    }
+    return String.fromCharCode(tSum - sSum);
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  String s = "abcd";
+  String t = "abcde";
+
+  print(sol.findTheDifference(s, t));
+}
