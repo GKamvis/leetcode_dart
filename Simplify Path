@@ -1,0 +1,26 @@
+/*
+Time Complexity O(N)  -n qədər dövr iterasiya edir.
+Space Complexity O(N)  - list və stack istifadə olunub . List ən pis halda N qədər element saxlayacaq Stack isə ən pis halda n ola bilər.
+*/
+
+class Solution {
+  String simplifyPath(String path) {
+    var list = path.split("/");
+    print(list);
+    var stack = <String>[];
+    for (var l in list) {
+      if (l == "..") {
+        if (!stack.isEmpty) stack.removeLast();
+        continue;
+      }
+      if (l.isNotEmpty && l != ".") stack.add(l);
+    }
+    return "/${stack.join("/")}";
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  String path = "/home//foo/";
+  print(sol.simplifyPath(path));
+}
