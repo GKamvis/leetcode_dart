@@ -1,0 +1,48 @@
+/*
+Time Complexity - O(1) - push, add , pop  , top , getMin hamısı vahid vaxtda çalışır.
+Space Complexity O(N)  2 List var  hər ikisi N qədər element alır.
+*/
+class MinStack {
+  List stack = [];
+  List minStack = [];
+
+  void push(int element) {
+    stack.add(element);
+    if(minStack.isEmpty || element <= minStack.last) minStack.add(element);
+    else{
+        minStack.add(minStack.last);
+    }
+
+  }
+
+  void pop() {
+    if (stack.isEmpty) {
+      throw StateError("Empty Stack");
+    } 
+    else if(minStack.isEmpty){
+      throw StateError("Empty Stack");
+    }
+    else {
+      int last = stack.last;
+      stack.removeLast();
+      minStack.removeLast();
+    }
+  }
+
+  int top() {
+    if (stack.isEmpty) {
+      throw StateError("Empty Stack");
+    } else {
+      return stack.last;
+    }
+  }
+
+
+  int getMin(){
+    return minStack.last;
+  }
+
+
+  @override
+  String toString() => stack.toString();
+}
