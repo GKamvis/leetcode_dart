@@ -1,0 +1,32 @@
+/*
+Time complexity O(n) while dövrü n qədər dövr edəcək
+Space Complexity O(n) əlavə olaraq 1 array var oda n qədər element qəbul edəcək.
+*/
+
+
+import 'dart:math';
+
+class Solution {
+  List<int>? sortedSquares(List<int> nums) {
+    int left = 0;
+    int right = nums.length - 1;
+    List<int> squareArray = [];
+
+    while (left <= right) {
+      if (nums[left].abs() > nums[right].abs()) {
+        squareArray.add(pow(nums[left], 2).toInt());
+        left++;
+      } else {
+        squareArray.add(pow(nums[right], 2).toInt());
+        right--;
+      }
+    }
+    return squareArray.reversed.toList();
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> nums = [-4, -1, 0, 3, 10];
+  print(sol.sortedSquares(nums));
+}
