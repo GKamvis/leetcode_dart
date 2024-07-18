@@ -1,0 +1,22 @@
+/*
+Time Complexity   O(log(power) + N)       .join() --> O(N)    modPow() --> O(log(power))
+Space Complexity   O(N)  olduğunu  çünki BigInt dəyişənləri var və n uzunluqda listin birləşməsindən yaranır power dəyişəni.
+
+
+*/
+
+class Solution {
+  int? superPow(int a, List<int> b) {
+    if (a == 0 || a == 1) return a;
+    BigInt power = BigInt.parse(b.join(""));
+    BigInt res = BigInt.from(a).modPow(power, BigInt.from(1337));
+    return res.toInt();
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> b = [2, 0, 0];
+  int a = 2147483647;
+  print(sol.superPow(a, b));
+}
