@@ -1,0 +1,58 @@
+/*
+Time Complexity - O(N) -  newList1 və newList2 yaratmaq O(n) və O(m) vaxt alır , iki .join methodu var onlarda  O(n) və O(m) vaxt alır Stringin tərs çevrilməsi və listin linked listə çevrilməsidə O(Dövr) qədər vaxt alır.
+Space Complexity - O(N) -  newList1 və newList2 yaratmaq O(n) və O(m) yer tələb edir  İki BigInt üçündə O(n) və O(m) qədər yer lazimdir. Reversed Sumda Cəmin uzunluğu qədər yer alır O(cəm uznluğu) Sondakı linked listdə O(cəmin uzunluğu qədər ) yer aır.
+
+*/
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? addTwoNumbers(ListNode? l1, ListNode? l2) {
+    var newList1 = [];
+    var newList2 = [];
+    while (l1 != null) {
+      newList1.insert(0, l1.val);
+      l1 = l1.next;
+    }
+    while (l2 != null) {
+      newList2.insert(0, l2.val);
+      l2 = l2.next;
+    }
+
+    BigInt Sum =
+        BigInt.parse(newList1.join('')) + BigInt.parse(newList2.join(''));
+
+    var reversedSum = Sum.toString().split("").reversed.toList();
+    print(Sum);
+    print(reversedSum);
+
+    ListNode head = ListNode(int.parse(reversedSum[0]));
+    ListNode current = head;
+
+    for (int i = 1; i < reversedSum.length; i++) {
+      current.next = ListNode(int.parse(reversedSum[i]));
+      current = current.next!;
+    }
+    return head;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  ListNode l1 = ListNode(9, ListNode(4, ListNode(9)));
+  ListNode l2 = ListNode(5, ListNode(6, ListNode(4)));
+
+  ListNode? result = solution.addTwoNumbers(l1, l2);
+
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
