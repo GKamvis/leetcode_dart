@@ -1,0 +1,53 @@
+/*
+Time Complexity O(N)  N dəfə iterasiya edir və stacka əlavə etmə və çıxarma O(1) vaxt alır.
+Space Complexity O(N)  ən pis halda N -1 sayda element stackda saxlanıla bilər stackda.
+
+Dart dilində xüsusi Stack classı yazılmıyayib səbəbidə .add və removeLast kimi öz funsiyaları var,yenədə stack classını özümüz yaza bilərik və .push .pop .peek kimidə funksiyaları istifadə edə bilərik.
+
+
+class Stack<E> {
+  final _list = <E>[];
+
+  void push(E value) => _list.add(value);
+
+  E pop() => _list.removeLast();
+
+  E get peek => _list.last;
+
+  bool get isEmpty => _list.isEmpty;
+  bool get isNotEmpty => _list.isNotEmpty;
+
+  @override
+  String toString() => _list.toString();
+}*/
+
+class Solution {
+  int? evalRPN(List<String> tokens) {
+    List<int> stack = [];
+    for (var token in tokens) {
+      if (token == '+' || token == '-' || token == '*' || token == '/') {
+        int a = stack.removeLast();
+        int b = stack.removeLast();
+
+        if (token == "+")
+          stack.add(a + b);
+        else if (token == "-")
+          stack.add(b - a);
+        else if (token == '*')
+          stack.add(b * a);
+        else {
+          stack.add(b ~/ a);
+        }
+      } else {
+        stack.add(int.parse(token));
+      }
+    }
+    return stack.first;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<String> tokens = ["2", "1", "+", "3", "*"];
+  print(sol.evalRPN(tokens));
+}
