@@ -1,0 +1,35 @@
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? swapPairs(ListNode? head) {
+    ListNode? tempNode = head;
+
+    while (tempNode != null && tempNode.next != null) {
+      var tempValue = tempNode.val;
+      tempNode.val = tempNode.next!.val;
+      tempNode.next!.val = tempValue;
+      tempNode = tempNode.next!.next;
+    }
+    return head;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  ListNode head =
+      ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))));
+  ListNode? result = sol.swapPairs(head);
+
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
