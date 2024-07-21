@@ -1,0 +1,43 @@
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? removeNthFromEnd(ListNode? head, int n) {
+    final dum = ListNode(0, head);
+    ListNode? left = dum;
+    ListNode? right = head;
+
+    while (n > 0) {
+      right = right?.next;
+      n--;
+    }
+    while (right != null) {
+      right = right?.next;
+      left = left?.next;
+    }
+
+    left?.next = left.next?.next;
+    return dum.next;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  ListNode head =
+      ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))));
+  int n = 2;
+  ListNode? result = sol.removeNthFromEnd(head, n);
+
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
