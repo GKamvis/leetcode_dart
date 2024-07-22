@@ -1,0 +1,47 @@
+/*
+Time Complexity O(N) bir while dövrü var.
+Space Complexity O(1) istifadə olunan yaddaş sabitdir çünki bu dəyişənlərin sayi verilən ölçülərdən aslı deyil.Listdəki node-lərin sayı nə qədər çox olsa da, kodun istifadə etdiyi əlavə yaddaş miqdarı dəyişmir.
+*/
+
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? deleteDuplicates(ListNode? head) {
+    ListNode dummy = ListNode(0, head);
+    ListNode newNode = dummy;
+
+    while (head != null) {
+      if (head.next != null && head.val == head.next?.val) {
+        while (head?.next != null && head?.val == head?.next?.val) {
+          head = head?.next;
+        }
+        newNode.next = head?.next;
+      } else {
+        newNode = newNode.next!;
+      }
+
+      head = head?.next;
+    }
+    return dummy.next;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  ListNode head =
+      ListNode(1, ListNode(2, ListNode(3, ListNode(3, ListNode(5)))));
+  ListNode? result = sol.deleteDuplicates(head);
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
