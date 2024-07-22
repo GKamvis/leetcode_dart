@@ -1,0 +1,23 @@
+class Solution {
+  List<String> sortPeople(List<String> names, List<int> heights) {
+        for (int i = 1; i < heights.length; i++) {
+      int key = heights[i];
+      String nameKey = names[i];
+      int j = i - 1;
+      while (j >= 0 && heights[j] < key) {
+        heights[j + 1] = heights[j];
+        names[j+1] = names[j];
+        j--;
+      }
+      heights[j + 1] = key;
+      names[j+1] = nameKey;
+    }
+    return names;
+  }
+}
+void main(){
+Solution sol = Solution();
+List<String> names = ["Mary","John","Emma"];
+List<int> heights = [180,165,170];
+print(sol.sortPeople(names , heights));
+}
