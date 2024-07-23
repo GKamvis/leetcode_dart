@@ -1,0 +1,55 @@
+/*
+Time Complexity O(N) bir while dövrü var sonuna qədər gedir.
+Space complexity O(1) Burada bir neçə (left , right , tempLeft , tempRight) kimi obyektlər yaradilib amma əslində bunlar sadəcə referansdır yəni bu obyektlər əlavə yaddaşdan istifadə etmir(və əlavə yaddaş sahəsi yaratmır)
+
+*/
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? partition(ListNode? head, int x) {
+    ListNode left = ListNode(0);
+    ListNode right = ListNode(0);
+    ListNode tempLeft = left;
+    ListNode tempRight = right;
+
+    while (head != null) {
+      if (head.val < x) {
+        tempLeft.next = head;
+        printListNode(tempLeft);
+        print('object');
+        tempLeft = head;
+        printListNode(tempLeft);
+        print('------');
+      } else {
+        tempRight.next = head;
+        tempRight = head;
+      }
+
+      head = head.next;
+    }
+
+    tempRight.next = null;
+    tempLeft.next = right.next;
+   return left.next;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  int x = 3;
+  ListNode head =
+      ListNode(1, ListNode(4, ListNode(3, ListNode(2, ListNode(5)))));
+  ListNode? result = sol.partition(head, x);
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
