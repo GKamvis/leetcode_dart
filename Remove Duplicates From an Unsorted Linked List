@@ -1,0 +1,37 @@
+//Time Complexity : O(N)  1 while dövrü var. 
+//Space Complexity :O(1) əlavə yaddaş tələb edəcək yeni listlər arraylər yaranmır.
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+class Solution {
+  ListNode? deleteDuplicates(ListNode? head) {
+      ListNode? newNode = head;
+      
+      while(newNode?.next != null){
+          if(newNode?.val == newNode?.next!.val){
+              newNode?.next = newNode?.next!.next;
+          }
+          else{
+              newNode = newNode?.next;
+          }
+      }
+      return head;
+  }
+}
+void main() {
+  Solution sol = Solution();
+  ListNode head =
+      ListNode(1, ListNode(4, ListNode(3, ListNode(2, ListNode(5)))));
+  ListNode? result = sol.deleteDuplicates(head);
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
