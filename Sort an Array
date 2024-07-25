@@ -1,0 +1,65 @@
+// Time complexity : O(NLogN)  quick sort  ortalamada bu  qədər vaxt tələb edir
+// Space complexity : O(LOgN)
+
+import 'dart:math';
+
+class Solution {
+  List<int> sortArray(List<int> nums) {
+    if (nums.length < 5) {
+      nums.sort();
+      return nums;
+    }
+
+    void swap(List<int> nums, int i, int j) {
+      int temp = nums[j];
+      nums[j] = nums[i];
+      nums[i] = temp;
+    }
+
+    int partition(List<int> nums, int left, int right) {
+      int pivotIndex = left + Random().nextInt(right - left + 1);
+      int pivot = nums[pivotIndex];
+      swap(nums, pivotIndex, right); // Pivotu sağa dəyiş
+
+      int i = left - 1;
+      for (int j = left; j < right; j++) {
+        if (nums[j] <= pivot) {
+          i++;
+          swap(nums, i, j);
+        }
+      }
+      swap(nums, i + 1, right);
+      return i + 1;
+    }
+
+    void quickSort(List<int> nums, int left, int right) {
+      while (left < right) {
+        int pivotIndex = partition(nums, left, right);
+        if (pivotIndex - left < right - pivotIndex) {
+          quickSort(nums, left, pivotIndex - 1);
+          left = pivotIndex + 1;
+        } else {
+          quickSort(nums, pivotIndex + 1, right);
+          right = pivotIndex - 1;
+        }
+      }
+    }
+
+    quickSort(nums, 0, nums.length - 1);
+
+    return nums;
+  }
+}
+
+void main() {
+  Solution QSort = Solution();
+
+  List<int> nums = [110, 100, 0];
+  var start = DateTime.now();
+
+  QSort.sortArray(nums);
+  print('SIRALANMIŞ LİST: $nums'); //[-1, 1, 2, 4, 5, 5, 5, 7, 8, 9, 10, 2323]
+  var end = DateTime.now();
+  var duration = end.difference(start);
+  print('Kodun işləmə müddəti: ${duration.inMilliseconds} millisaniyə');
+}
