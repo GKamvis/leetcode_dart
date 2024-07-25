@@ -1,0 +1,19 @@
+/*
+Time Complexity:  O((n-1) * n log n) belədə yazmaq olar_->(n^2 log n). While dövrü n-1 qədər iterasiya edir.O(n-1) sərf etdi və hər dəfə .sort o(n log n ) sərf etdi .Ümumiləşdirsək (n-1)*(nlogn). 
+Space Complexity :  O(n) Listin özü bu qədər yaddaş tələb edəcək deyə o(n) olur digər 
+*/
+
+class Solution {
+  int lastStoneWeight(List<int> stones) {
+    while (stones.length > 1) {
+      stones.sort();
+      stones.add((stones.removeLast() - stones.removeLast()).abs());
+    }
+    return stones.isEmpty ? 0 : stones.last;
+  }
+}
+void main() {
+  Solution sol = new Solution();
+  List<int> stones = [2, 7, 4, 1, 8, 1];
+  print(sol.lastStoneWeight(stones));
+}
