@@ -1,0 +1,49 @@
+// Time complexity : O(NlogN) .sort methodu varO(LogN) və 2 dəfə n qədər iterasiya edən while dövrü var. i O(n) + O(n) + O(n log n) + O(n) = O(n log n) 
+//Space complexity : O(N) bir list var N element tutur.
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? sortList(ListNode? head) {
+    var list = [];
+    var dummy = head;
+
+    var temp = head;
+
+    while (temp != null) {
+      list.add(temp.val);
+      temp = temp.next;
+    }
+
+    list.sort();
+    int i = 0;
+
+    while (dummy != null) {
+      dummy.val = list[i];
+      i++;
+      dummy = dummy.next;
+    }
+
+    return head;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  ListNode l1 = ListNode(3, ListNode(4, ListNode(9)));
+
+  ListNode? result = solution.sortList(l1);
+
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
