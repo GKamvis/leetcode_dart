@@ -1,0 +1,19 @@
+class Solution {
+  int? findClosestNumber(List<int> nums) {
+    int minIndex = 0;
+
+    for (int i = 1; i < nums.length; i++) {
+      if ((nums[i].abs() < nums[minIndex].abs()) ||
+          (nums[i].abs() == nums[minIndex].abs() && nums[i] > nums[minIndex])) {
+        minIndex = i;
+      }
+    }
+    return nums[minIndex];
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> nums = [2, 1, 1, -1, 100000];
+  print(sol.findClosestNumber(nums));
+}
