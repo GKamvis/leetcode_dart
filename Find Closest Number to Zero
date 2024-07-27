@@ -1,3 +1,6 @@
+// Time Complexity : O(N) - bir dəfə for iterasiya edir.
+// Space Complexity : O(1)  əlavə yaddaş istəyən array yoxdur.
+
 class Solution {
   int? findClosestNumber(List<int> nums) {
     int minIndex = 0;
