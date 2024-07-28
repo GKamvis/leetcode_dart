@@ -1,0 +1,41 @@
+/**
+Time complexity : O(N)    beləki ==> O(list1.length + list2.length)
+Space complexity :o(N)    buda həmçinin ən pis halda  O(list1.length + list2.length) ola bilər stack kimi düşünsək üst üstə yiğilmiş  yığının hündürlüyünu təmsil edir.
+ */
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+class Solution {
+  ListNode? mergeTwoLists(ListNode? list1, ListNode? list2) {
+    if(list1 == null) return list2;
+    if(list2 == null) return list1;
+
+    if(list1.val < list2.val){
+        list1.next = mergeTwoLists(list1.next , list2);
+        return list1;
+    }
+    else{
+        list2.next = mergeTwoLists(list1 , list2.next);
+        return list2;
+    }
+  }
+}
+void main() {
+  Solution sol = Solution();
+  ListNode list1 =
+      ListNode(1, ListNode(4, ListNode(3, ListNode(2, ListNode(5)))));
+  ListNode list2 =
+      ListNode(3, ListNode(4, ListNode(1, ListNode(9, ListNode(12)))));
+  ListNode? result = sol.mergeTwoLists(list1 , list2);
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
