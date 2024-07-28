@@ -1,0 +1,35 @@
+/*
+Time complexity : O(N) bir while dövrü var.
+Space complexity :O(1) əlavə yaddaş tələb olunmur
+*/
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+class Solution {
+  ListNode? middleNode(ListNode? head) {
+    ListNode? mid = head;
+    ListNode? end = head;
+    while(end != null && end.next != null){
+        mid = mid?.next;
+        end = end.next?.next;
+    }
+    return mid;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  ListNode head =
+      ListNode(1, ListNode(4, ListNode(3, ListNode(2, ListNode(5)))));
+  ListNode? result = sol.middleNode(head);
+  printListNode(result);
+}
+
+void printListNode(ListNode? node) {
+  while (node != null) {
+    print(node.val);
+    node = node.next;
+  }
+}
