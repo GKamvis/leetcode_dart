@@ -1,0 +1,37 @@
+/*
+Time Complexity O(N) n nodelərin sayıdır.Beləki ağacda bütün elementlərə bir dəfə getdir.
+Space complexity O(N) -ən pis halda olacaq. Buda ağacin balansız olması halinda münkündür. Balansız ağac - (bütün elementləri sağda və ya solda ola biləcək ağac)
+Balanslı ağaclarda o(Log N) də ola bilər.
+*/
+
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+
+  TreeNode([this.val = 0, this.left, this.right]);
+}
+
+class Solution {
+  int maxDepth(TreeNode? root) {
+    if (root == null) return 0;
+    return 1 + max(maxDepth(root.left), maxDepth(root.right));
+  }
+
+  int max(int a, int b) {
+    return a > b ? a : b;
+  }
+}
+
+void main() {
+  // TreeNode ilə bir ağac qururuq
+  TreeNode root = TreeNode(
+    1,
+    TreeNode(2, TreeNode(4), TreeNode(5)),
+    TreeNode(3),
+  );
+
+  Solution solution = Solution();
+  print("Maximum Depth: ${solution.maxDepth(root)}");
+}
