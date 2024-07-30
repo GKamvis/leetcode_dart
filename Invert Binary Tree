@@ -1,0 +1,79 @@
+/*
+      4
+     / \
+    2   7
+   / \ / \
+  1  3 6  9
+
+      4
+     / \
+    7   2
+   / \ / \                                          Time Complexity : O(N) bütün nodelərə  gedilir.
+  9  6 3  1
+                                                    Space Complexity : O(H) ən pis halda  rekursiyanin dərinliyi  qədər ortalamada O(log n)  
+      4
+     / \
+    2   7
+   / \ / \
+  1  3 6  9
+
+      4
+     / \
+    7   2
+   / \ / \
+  6  9 1  3
+
+
+
+
+
+
+*/
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  
+  TreeNode(this.val, {this.left, this.right});
+}
+
+class Solution {
+  TreeNode? invertTree(TreeNode? root) {
+    if (root == null) return root;
+
+    TreeNode? temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    invertTree(root.left);
+    invertTree(root.right);
+
+    return root;
+  }
+}
+
+void main() {
+
+  Solution solution = Solution();
+  TreeNode root = TreeNode(4,
+    left: TreeNode(2,
+      left: TreeNode(1),
+      right: TreeNode(3)
+    ),
+    right: TreeNode(7,
+      left: TreeNode(6),
+      right: TreeNode(9)
+    )
+  );
+
+  printTree(solution.invertTree(root););
+}
+
+void printTree(TreeNode? root) {
+  if (root == null) return;
+
+  print(root.val);
+  printTree(root.left);
+  printTree(root.right);
+}
