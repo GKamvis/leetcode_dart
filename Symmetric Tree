@@ -1,0 +1,42 @@
+/*
+Time Complexity : o(N) Ağacdakı düyünlərin sayıdır. Hər bir Node ziyarət olunur.
+Space Complexity : O(N) Rekursiv Stackin dərinliyindən aslidir ortalama hallarda (Log N) olacaq. Acaq biz ən pis ehtimali nəzərdə tuturuq ona görə Stackın dərinliyini götürürük.
+*/
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  
+  TreeNode(this.val, {this.left, this.right});
+}
+
+class Solution {
+  bool same(TreeNode? r1, TreeNode? r2) {
+    if (r1 == null && r2 == null) return true;
+    if (r1 == null || r2 == null) return false;
+    if (r1.val != r2.val) return false;
+    return same(r1.left, r2.right) && same(r1.right, r2.left);
+  }
+
+  bool isSymmetric(TreeNode? root) {
+    return same(root, root);
+  }
+}
+
+void main() {
+    Solution solution = Solution();
+  TreeNode root = TreeNode(1,
+    left: TreeNode(2,
+      left: TreeNode(3),
+      right: TreeNode(4)
+    ),
+    right: TreeNode(2,
+      left: TreeNode(4),
+      right: TreeNode(3)
+    )
+  );
+
+
+  print(solution.isSymmetric(root)); 
+}
