@@ -1,0 +1,16 @@
+// Time complexity : o(N) 
+// Space Complexity: o(1)
+
+class Solution {
+  int countSeniors(List<String> details) {
+    int count = 0;
+    for (int i = 0; i < details.length; i++) {
+      var res = details[i].toString();
+      if (int.parse(res.substring(11, 13)) > 60) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+}
