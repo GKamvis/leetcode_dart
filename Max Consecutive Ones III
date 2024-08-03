@@ -1,0 +1,40 @@
+/*
+Time Complexity : O(N)  for dövrü N qədər iterasiya edir.
+Space Complexity : O(1) Əlavə yaddaş tələb edən heçnə yoxdur. Sabit yaddaş istifadə edir bütün dəyişənlər.
+*/
+
+import "dart:math";
+class Solution {
+  int longestOnes(List<int> nums, int k) {
+    
+    int result = 0;
+    int max_0 = 0;
+    int l = 0;
+
+    for(int i = 0 ; i < nums.length ; i++){
+
+        if(nums[i] == 0) max_0 ++;
+
+        while(max_0 > k){
+            if(nums[l] == 0) max_0 --;
+
+            l++;
+        }
+
+        int difference = i - l + 1;
+
+        result = max(result , difference);
+    }
+
+    return result;
+  }
+}
+
+void main() {
+  var sol = Solution();
+  List<int> nums = [1,1,1,0,0,0,1,1,1,1,0];
+  int k = 2;
+  print(sol.longestOnes(nums , k));
+  
+  
+}
