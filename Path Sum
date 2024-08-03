@@ -1,0 +1,41 @@
+/*
+Time Complexity : o(N) n sayda node var ən pis halda bütün hamısına gediləcək.
+Space Complexity :O(H) (Recursive call stack)-dərinliyindən aslıdır ən pis halda O(H) olacaq normal hallarda O(N) ola bilər.
+*/
+ class TreeNode {
+   int val;
+   TreeNode? left;
+  TreeNode? right;
+    TreeNode([this.val = 0, this.left, this.right]);
+  }
+
+class Solution {
+  bool hasPathSum(TreeNode? root, int targetSum) {
+    
+    if(root == null) return false;
+
+    if(root.left == null && root.right == null && root.val ==targetSum) return true;
+
+
+    return hasPathSum(root.left , targetSum - root.val) || hasPathSum(root.right , targetSum - root.val);
+
+
+  }
+}
+
+void main() {
+final sol = Solution();
+  int targetSum = 22;
+    TreeNode root = TreeNode(5);
+  root.left = TreeNode(4);
+  root.right = TreeNode(8);
+  root.left!.left = TreeNode(11);
+  root.left!.left!.left = TreeNode(7);
+  root.left!.left!.right = TreeNode(2);
+  root.right!.left = TreeNode(13);
+  root.right!.right = TreeNode(4);
+  root.right!.right!.right = TreeNode(1);
+  
+  
+  print(sol.hasPathSum(root , targetSum));
+}
