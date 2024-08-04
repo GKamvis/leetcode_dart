@@ -1,0 +1,163 @@
+/*
+Time Complexity : O(N) bütün nodelərə gedilir
+Space Complexity : O(N) + rekursiv stack dərinliyi 
+       5
+      / \
+     3   7
+    / \   \
+   2   4   8
+  /
+ 1
+
+*/
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  TreeNode(this.val, {this.left, this.right});
+}
+
+class Solution {
+  int kthSmallest(TreeNode? root, int k) {
+    List<int> list = [];
+    
+    void helper(TreeNode? root) {
+        if (root == null) return;
+        helper(root.left);
+        list.add(root.val);
+        helper(root.right);
+    }
+    
+    helper(root);
+    return list[k - 1];
+  }
+}
+
+void main() {
+  // Ağacın qurulması
+  TreeNode root = TreeNode(
+    5,
+    left: TreeNode(
+      3,
+      left: TreeNode(
+        2,
+        left: TreeNode(1),
+      ),
+      right: TreeNode(4),
+    ),
+    right: TreeNode(
+      7,
+      right: TreeNode(8),
+    ),
+  );
+
+  Solution solution = Solution();
+  int k = 3;
+  int result = solution.kthSmallest(root, k);
+
+  print("$result"); // Nəticə: 3
+}
+
+
+/*
+Başlangıç:
+
+root kök düyünü (5).
+list boşdur.
+In-order Traversing (Kök düyün: 5):
+
+helper(root) çağırılır.
+root boş deyil.
+Sol Alt Ağacı Travers Et (Kök düyün: 3):
+
+helper(root.left) çağırılır.
+root (3).
+Sol Alt Ağacı Travers Et (Kök düyün: 2):
+
+helper(root.left) çağırılır.
+root (2).
+Sol Alt Ağacı Travers Et (Kök düyün: 1):
+
+helper(root.left) çağırılır.
+root (1).
+1 Sol Alt Düyünü (Boş):
+
+helper(root.left) çağırılır.
+root boş.
+Geri dön.
+1 Dəyərini Siyahıya Əlavə Et:
+
+list.add(1).
+list = [1].
+1 Sağ Alt Düyünü (Boş):
+
+helper(root.right) çağırılır.
+root boş.
+Geri dön.
+2 Dəyərini Siyahıya Əlavə Et:
+
+list.add(2).
+list = [1, 2].
+2 Sağ Alt Ağacı Travers Et (Kök düyün: 4):
+
+helper(root.right) çağırılır.
+root (4).
+4 Sol Alt Düyünü (Boş):
+
+helper(root.left) çağırılır.
+root boş.
+Geri dön.
+4 Dəyərini Siyahıya Əlavə Et:
+
+list.add(4).
+list = [1, 2, 3].
+4 Sağ Alt Düyünü (Boş):
+
+helper(root.right) çağırılır.
+root boş.
+Geri dön.
+3 Dəyərini Siyahıya Əlavə Et:
+
+list.add(3).
+list = [1, 2, 3, 4].
+Sağ Alt Ağacı Travers Et (Kök düyün: 7):
+
+helper(root.right) çağırılır.
+root (7).
+7 Sol Alt Düyünü (Boş):
+
+helper(root.left) çağırılır.
+root boş.
+Geri dön.
+7 Dəyərini Siyahıya Əlavə Et:
+
+list.add(7).
+list = [1, 2, 3, 4, 5, 7].
+Sağ Alt Ağacı Travers Et (Kök düyün: 8):
+
+helper(root.right) çağırılır.
+root (8).
+8 Sol Alt Düyünü (Boş):
+
+helper(root.left) çağırılır.
+root boş.
+Geri dön.
+8 Dəyərini Siyahıya Əlavə Et:
+
+list.add(8).
+list = [1, 2, 3, 4, 5, 7, 8].
+8 Sağ Alt Düyünü (Boş):
+
+helper(root.right) çağırılır.
+root boş.
+Geri dön.
+İş Bitdi:
+
+helper funksiyası kök düyünündən başlayaraq bütün ağacı in-order travers edib.
+list tamamlandı: [1, 2, 3, 4, 5, 7, 8].
+return list[k-1] (k=3 olduğuna görə, list[2] = 3).
+Nəticədə, ağacın üçüncü ən kiçik elementi 3-dür.
+*/
+
+
