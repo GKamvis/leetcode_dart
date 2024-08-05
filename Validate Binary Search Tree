@@ -1,0 +1,46 @@
+/*
+Time Complexity : O(N) hər node ziyarət olunur.
+Space Complexity : O(H) rekursiyanin dərinliyindən aslıdır.
+*/
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+
+  TreeNode([this.val = 0, this.left, this.right]);
+}
+
+class Solution {
+  bool isValidBST(TreeNode? root) {
+    bool isValid(TreeNode? node, double min, double max) {
+      if (node == null) return true;
+
+      if (node.val <= min || node.val >= max) return false;
+
+      return isValid(node.left, min, node.val.toDouble()) &&
+          isValid(node.right, node.val.toDouble(), max);
+    }
+
+    return isValid(root, double.negativeInfinity, double.infinity);
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+
+  TreeNode validBST = TreeNode(2);
+  validBST.left = TreeNode(1);
+  validBST.right = TreeNode(3);
+  
+
+  TreeNode invalidBST = TreeNode(5);
+  invalidBST.left = TreeNode(1);
+  invalidBST.right = TreeNode(4);
+  invalidBST.right?.left = TreeNode(3);
+  invalidBST.right?.right = TreeNode(6);
+  
+
+  print(solution.isValidBST(validBST));  // Output: true
+  print(solution.isValidBST(invalidBST));  // Output: false
+}
