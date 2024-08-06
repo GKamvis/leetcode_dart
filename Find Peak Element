@@ -1,6 +1,8 @@
 /*
 Time complexity : O(Logn) hər dəfə dövr işlədikcə yoxlana biləcək elementləri sayi 2 dəfə azalır
 Space Complexity : O(1) sabit dəyişənlərdir hamısı.
+
+    return nums.indexOf(nums.reduce(max)); bu sətirdə həll edir ancaq yavaşdır.Amma test mərhələsini keçir.
 */
 class Solution {
   int findPeakElement(List<int> nums) {
