@@ -2,6 +2,7 @@
 Time Complexity : O(NlogN) . sort və dövr var ==> O(N) + O(NLogN)  ~= O(NLogN)  
 Space Complexity O(N) .sort istifadə olunub oda O(N) yaddaş isitfadə edir siralamada.
 */
+import "dart:math";
 class Solution {
   int maximumGap(List<int> nums) {
     if(nums.length < 2) return 0;
@@ -16,6 +17,6 @@ class Solution {
 
 void main(){
 var sol = Solution();
-List<int> nums = [1 2, 4, 5, 71 12];
+List<int> nums = [1 ,  2, 4, 5, 71 ,  12];
 print(sol.maximumGap(nums));
 }
