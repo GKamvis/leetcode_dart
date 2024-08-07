@@ -1,0 +1,49 @@
+/*
+Time Complexity : O(N)  İki dəfə dövr işləyib  hər ikisi O(N) vaxt tələb edib ===> O(N) + O(N)  ~= O(N)
+Space Complexity : O(N)  Max uzunluğu n ola biləcək iki map yaradilir onlardada   O(N) + O(N)  ~= O(N) yer tutacaqlar.
+
+ Hər bir  (keyin) `ransomNote`-da olan sayını `magazine`-də yoxlayırıq
+ Hər iki sətirdəki simvolların sayını tapmaq üçün Counter istifadə edirik
+ Simvollardan istifadə edərək bir Map yaradırıq
+
+
+
+*/
+
+class Solution {
+  bool canConstruct(String ransomNote, String magazine) {
+    if (magazine.length < ransomNote.length) {
+      return false;
+    }
+
+    var ransomNoteCount = groupCounts(ransomNote);
+    var magazineCount = groupCounts(magazine);
+
+    for (var key in ransomNoteCount.keys) {
+      if (magazineCount[key] == null || magazineCount[key]! < ransomNoteCount[key]!) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  Map<String, int> groupCounts(String s) {
+    var counts = <String, int>{};
+    for (int i = 0; i < s.length; i++) {
+      String char = s[i];
+      if (counts.containsKey(char)) {
+        counts[char] = counts[char]! + 1;
+      } else {
+        counts[char] = 1;
+      }
+    }
+    return counts;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  print(solution.canConstruct("a", "b")); // False
+
+}
