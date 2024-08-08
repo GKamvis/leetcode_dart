@@ -1,0 +1,33 @@
+// Time Complexity : O(N) for dövrü n dəfə iterasiya edə bilər.Əslində 2 for var O(m) + o(N) ~= O(N) qəbul edilə bilər
+// Space Complexity : O(N) List n element tuta bilər
+class Solution {
+  int calPoints(List<String> operations) {
+    List<int> list = [];
+    for (var O in operations) {
+      if (O == "+") {
+        list.add(list[list.length - 1] + list[list.length - 2]);
+      } else if (O == "D") {
+        list.add(list[list.length - 1] * 2);
+      } else if (O == "C") {
+        list.removeLast();
+      } else {
+        list.add(int.parse(O));
+      }
+    }
+
+    int sum = 0;
+    for (var i in list) {
+      sum += i;
+    }
+    return sum;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+
+  List<String> operations = ["5", "2", "C", "D", "+"];
+  int result = solution.calPoints(operations);
+
+  print("Nəticə: $result"); 
+}
