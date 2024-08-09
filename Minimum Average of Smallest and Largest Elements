@@ -1,0 +1,52 @@
+/*   
+Time complexity : O(n log n) sort funskiyasi işləyir və O(n log n) qədər vaxt tələb edir və while dövrü O( n / 2) qədər vaxt tələb edir. O
+Space Complexity : O(n) sort funsiyasi O(N) qədər yer tələb edir.         
+
+
+          komentdə olan effektiv olmayan kod isə təxminən O(n ^ 2) qədər vaxt o(n / 2) qədər yaddaş tələb edir.
+
+
+*/
+
+
+class Solution {
+  double minimumAverage(List<int> nums) {
+    nums.sort();  
+    
+    int left = 0;
+    int right = nums.length - 1;
+    double minAverage = double.infinity;
+
+    while (left < right) {
+        double average = (nums[left] + nums[right]) / 2;
+        if (average < minAverage) {
+            minAverage = average;
+        }
+        left++;
+        right--;
+    }
+
+    return minAverage;
+  }
+}
+
+
+
+// class Solution {
+//   double minimumAverage(List<int> nums) {
+//     List<double> averages = [];
+//     nums.sort();
+
+//     while (nums.length > 1) {
+//         int minElement = nums[0];
+//         int maxElement = nums.last;
+//         averages.add((minElement + maxElement) / 2);
+//         nums.removeLast();
+//         nums.removeAt(0);
+//     }
+
+//     return averages.reduce((a, b) => a < b ? a : b);
+//   }
+// }
+
+
