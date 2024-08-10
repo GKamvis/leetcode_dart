@@ -1,0 +1,41 @@
+/*
+Time complexity : O(N) while dövründə O(N) qədər vaxt tələb olunur ancaq .gcd funksiyasini təxminən O(1) olduğunu deyirik əslində  O(log(min(a, b))) qədər vaxt tələb edəcək.
+Space Complexity : O(1) beləki sabit qəbul edilirki .gcd yanliz a və b yəni iki dəyər istifadə edir onlarda sabitdir Linked listə bu halda o(1) qədər yer istifadə edəcək. 
+*/
+
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  ListNode? insertGreatestCommonDivisors(ListNode? head) {
+    ListNode? result = head;
+
+    while (head?.next != null) {
+      ListNode temp = head!.next!;
+
+      ListNode newNode = ListNode(head.val.gcd(temp.val), temp);
+
+      head.next = newNode;
+
+      head = temp;
+    }
+    return result;
+  }
+}
+
+void main() {
+  ListNode node3 = ListNode(6);
+  ListNode node2 = ListNode(4, node3);
+  ListNode node1 = ListNode(2, node2);
+
+  Solution solution = Solution();
+  ListNode? result = solution.insertGreatestCommonDivisors(node1);
+  while (result != null) {
+    print(result.val);
+    result = result.next;
+  }
+}
