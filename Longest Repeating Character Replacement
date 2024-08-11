@@ -1,0 +1,35 @@
+/*
+Time Complexity : O(N) for dövrü n qədər arta bilir while dövrü isə max n qəqədr arta bilər l və r bir birindən aslıdır və s stringi uzərində 1 dəfə hərəkət edə bilərlər ən pis halda n qədər iterasia edə bilər.
+buda  O(N) qədər vaxt tələb edəcək.
+Space Complexity : O(1) bütün dəyişənlər sabit vaxt tələb edir.
+*/
+
+import 'dart:math';
+
+class Solution {
+  int? characterReplacement(String s, int k) {
+    var list = List.filled(26, 0);
+    int l = 0;
+    int maxCount = 0;
+    int longest = 0;
+
+    for (int r = 0; r < s.length; r++) {
+      maxCount = max(maxCount, ++list[s.codeUnitAt(r) - 65]);
+
+      while ((r - l + 1) - maxCount > k) {
+        list[s.codeUnitAt(l) - 65]--;
+        l++;
+      }
+      longest = max(longest, r - l + 1);
+    }
+    return longest;
+  }
+}
+
+void main() {
+  var sol = Solution();
+  String s = 'ABAB';
+  int k = 1;
+
+  print(sol.characterReplacement(s, k));
+}
