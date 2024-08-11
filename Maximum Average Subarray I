@@ -1,0 +1,41 @@
+/*
+Time complexity : O(N)  birinci for k qədər ikinci for n-k qədər dövr edir buda ortalamada O(N) kimi yazila bilər.
+Space complexity : O(1) double int sabit yaddaş tələb edir.
+*/
+
+
+import 'dart:math';
+
+void main() {
+  Solution sol = Solution();
+  
+  List<int> nums = [1, 12, -5, -6, 50, 3];
+  int k = 4;
+
+  double result = sol.findMaxAverage(nums, k);
+
+  print(result);
+}
+
+class Solution {
+  double findMaxAverage(List<int> nums, int k) {
+    late double maxAverage;
+    int sum = 0;
+
+    for (int i = 0; i < k; i++) {
+      sum += nums[i];
+    }
+
+    maxAverage = sum / k;
+
+    for (int i = k; i < nums.length; i++) {
+      sum += nums[i];
+      sum -= nums[i - k];
+
+      double average = sum / k;
+      maxAverage = max(maxAverage, average);
+    }
+
+    return maxAverage;
+  }
+}
