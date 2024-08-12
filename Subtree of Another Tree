@@ -1,0 +1,46 @@
+/*
+Time Complexity : O(N * M) n root-dakı nodelərin sayi m subRootdakı düyünlərin sayıdır.Hər bir node üçün helper funskiyasi çağrılır bu səbəbdən o(N * M ) qədər vaxt tələb olunur .
+Space Complexity : (N) rekursiv call stackdan aslıdır ən pis halda N sayda yer tələb edə bilər.
+*/
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  TreeNode([this.val = 0, this.left, this.right]);
+}
+
+class Solution {
+  bool isSubtree(TreeNode? root, TreeNode? subRoot) {
+    bool helper(TreeNode? r, TreeNode? s) {
+      if (s == null && r == null) return true;
+      if (s == null || r == null) return false;
+      if (s.val != r.val) return false;
+
+      return helper(s.left, r.left) && helper(s.right, r.right);
+    }
+
+    if (root == null && subRoot == null) return true;
+    if (root == null || subRoot == null) return false;
+
+    if (helper(root, subRoot)) return true;
+
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+  }
+}
+
+void main() {
+  TreeNode root = TreeNode(3);
+  root.left = TreeNode(4);
+  root.right = TreeNode(5);
+  root.left!.left = TreeNode(1);
+  root.left!.right = TreeNode(2);
+
+  TreeNode subRoot = TreeNode(4);
+  subRoot.left = TreeNode(1);
+  subRoot.right = TreeNode(2);
+
+  Solution solution = Solution();
+  bool result = solution.isSubtree(root, subRoot);
+  print(result); 
+}
