@@ -1,0 +1,53 @@
+/*
+Time Complexity : O(N) bütün nodelərə gedilir.
+Space Complexity : O(N) ən pis halda rekursiv call stackda bütün nodelər üçün bütün çağırışlar yığıla bilər məsələn belə bir ağacda : 
+    1
+     \
+      2
+       \
+        3
+         \
+          4
+
+
+*/
+
+
+class TreeNode {
+  int val;
+  TreeNode? left;
+  TreeNode? right;
+  TreeNode([this.val = 0, this.left, this.right]);
+}
+
+class Solution {
+  int diameterOfBinaryTree(TreeNode? root) {
+    int diameter = 0;
+
+    int depth(TreeNode? node) {
+      if (node == null) return 0;
+
+      int leftDepth = depth(node.left);
+      int rightDepth = depth(node.right);
+
+      diameter = diameter > (leftDepth + rightDepth) ? diameter : (leftDepth + rightDepth);
+
+      return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
+    }
+
+    depth(root);
+    return diameter;
+  }
+}
+
+void main() {
+  TreeNode root = TreeNode(1);
+  root.left = TreeNode(2);
+  root.right = TreeNode(3);
+  root.left!.left = TreeNode(4);
+  root.left!.right = TreeNode(5);
+
+  Solution solution = Solution();
+  int diameter = solution.diameterOfBinaryTree(root);
+  print(diameter); // Çıxış: 3
+}
