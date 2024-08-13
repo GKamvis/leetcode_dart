@@ -1,0 +1,47 @@
+/*
+Time omplexity : O(N) For dövrü O(n) qədər vaxt tələb edir və hər dəfə sublist methodu ilə k sayda element queue-dən  çıxarılır O(k).ORtalamada O(N) qədər vaxt lazımdır.
+Sace Complexity : O(N) Iki list istifad; olunub birincisi O(n) qədər yer tələb edir ikincisi isə ən pis ehtimalda O(log n) qədər yaddaş tələb edə bilər.Ortalamada O(N).
+*/
+
+
+class TreeNode {
+    int val;
+    TreeNode? left;
+    TreeNode? right;
+    TreeNode([this.val = 0, this.left, this.right]);
+  }
+ 
+class Solution {
+  List<double> averageOfLevels(TreeNode? root) {
+      List<TreeNode?> queue = [];
+      queue.add(root);
+      List<double> averages = [];
+      while(queue.length != 0){
+          int sum = 0;
+          int level = queue.length;
+          for(int i = 0 ; i < level ; ++i){
+              sum += (queue[i]?.val ?? 0);
+              if(queue[i]?.right != null){
+                queue.add(queue[i]?.right);
+              }
+              if(queue[i]?.left != null){
+                queue.add(queue[i]?.left);
+              }
+          }
+          averages.add(sum / level);
+          queue = queue.sublist(level);
+      }
+      return averages;
+  }
+}
+
+void main() {
+  TreeNode root = TreeNode(3);
+  root.left = TreeNode(9);
+  root.right = TreeNode(20, TreeNode(15), TreeNode(7));
+
+  Solution solution = Solution();
+  List<double> result = solution.averageOfLevels(root);
+
+  print(result); // [3.0, 14.5, 11.0]
+}
