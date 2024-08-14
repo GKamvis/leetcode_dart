@@ -1,0 +1,32 @@
+/*
+Time Complexity : O(N) iki dövr var iç içə ancaq ikinci dövrdə iterasiya edən dəyişkənlər eyni olduğu üçün n^2 yox O(n) + o(m) olacaq.
+Space COmplexity :O(N) bir listimiz var max n qədər element tutacaq.
+*/
+
+class Solution {
+  List<String> summaryRanges(List<int> nums) {
+    List<String> list = [];
+
+    for(int i = 0 ; i < nums.length ; i++){
+        int start = nums[i];
+
+        while(i < nums.length -1 && nums[i] + 1 == nums[i+1]){
+            i++;
+        }
+
+        if(start != nums[i]) list.add('$start->${nums[i]}');
+        else list.add('${nums[i]}');
+
+    }
+
+    return list;
+
+  }
+}
+void main(){
+    var sol = Solution();
+
+    List<int> nums = [0,1,2,4,5,7];
+
+    print(sol.summaryRanges(nums));
+}
