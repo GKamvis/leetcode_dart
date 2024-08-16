@@ -1,0 +1,39 @@
+/*
+Time Complexity : O(N) for dövrü n-1 qədər iterasiya edir .max methodu ilə yanliz 2 element arasinda müqaisə aparır O(1) qəbul edə bilərik. Nəticədə (N) qədər zaman tələb edəcək.
+Space Complexity : O(1) biz istifadə etdiyimiz dəyişənlər sabit yaddaş tələb edir.
+*/
+
+import 'dart:math';
+class Solution {
+  int maxDistance(List<List<int>> arrays) {
+
+    int firstMax = arrays[0].last;
+    int firstMin = arrays[0].first;
+    int maxDistance = 0;
+
+    for(int i = 1 ; i < arrays.length ; i++){
+        int currMax = arrays[i].last;
+        int currMin = arrays[i].first;
+
+        maxDistance = max(maxDistance , (firstMax - currMin).abs());
+        maxDistance = max(maxDistance , ( currMax - firstMin).abs());
+
+        firstMax = max(currMax , firstMax);
+        firstMin = min(currMin , firstMin);
+    }
+
+    return maxDistance;
+
+  }
+}
+void main() {
+   var sol = Solution();
+   List<List<int>> arrays = [[1,2,3],[4,5],[1,2,3]];
+  print(sol.maxDistance(arrays));
+  
+  print('-------');
+  List<List<int>> arrays1 = [[1,4],[0,5]];
+
+    print(sol.maxDistance(arrays1));
+  
+}
