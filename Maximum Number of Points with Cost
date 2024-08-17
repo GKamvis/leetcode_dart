@@ -1,0 +1,54 @@
+/*
+Time complexity : O(N*M) yəni O(Row * Column) əslində .from methodu - O(M) , ik for dövrü O(N) içindəki 3 for dövrü O(M)  ən sondakı max isə O(M) qədər vaxt tələb edir.
+Qalan methodalar sabit vaxt tələb edir. Beləki O(N * 3M) + O(M) + O(M).
+Space Complexity : O(M) temp, LtoR, RtoL, və newTemp massivləri hər biri O(column)  qədər yer tutur. O(M) + O(M) + O(M) + O(M)  ~=O(M) M burada Coulmn dəyişənini təmsil edir.
+*/
+
+import 'dart:math';
+
+class Solution {
+  int maxPoints(List<List<int>> points) {
+    int row = points.length;
+    int column = points[0].length;
+    List<int> temp = List<int>.from(points[0]);
+
+    for (int i = 1; i < row; i++) {
+      List<int> LtoR = List<int>.filled(column, 0);
+      List<int> RtoL = List<int>.filled(column, 0);
+      List<int> newTemp = List<int>.filled(column, 0);
+
+      // Soldan sağa maksimum
+      LtoR[0] = temp[0];
+      for (int j = 1; j < column; j++) {
+        LtoR[j] = max(LtoR[j - 1] - 1, temp[j]);
+      }
+
+      // Sağdan sola maksimum
+      RtoL[column - 1] = temp[column - 1];
+      for (int j = column - 2; j >= 0; j--) {
+        RtoL[j] = max(RtoL[j + 1] - 1, temp[j]);
+      }
+
+      for (int j = 0; j < column; j++) {
+        newTemp[j] = points[i][j] + max(LtoR[j], RtoL[j]);
+      }
+
+      temp = newTemp;
+    }
+
+    return temp.reduce((a, b) => max(a, b));
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  
+  List<List<int>> points = [
+    [1, 2, 3],
+    [1, 5, 1],
+    [3, 1, 1]
+  ];
+
+  int result = solution.maxPoints(points);
+  print(result);
+}
