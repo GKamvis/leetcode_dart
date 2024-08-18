@@ -1,0 +1,53 @@
+/*
+Time Complexity : O(N + a) qədər vaxt tələb edir qısaca O(N) kimi qəbul edə bilərik, 101 elementi bir list yaratmaq O(1) for O(N) digər forda O(N) qəbul oluna bilər ancaq daxilində bir while dövrü var iç içə olmasina baxmayaraq cüzi heights uzunluğu qədər vaxt tələb edəcək.
+Space Complexity : O(1)  ölçenü biz sabit veririk.
+
+
+komentdə olan kodun Time Comlexitysi :O(N log N) , Space Complexity O(N) // arrayin max 100 elementi olduğunu bildiyimiz üçün əslində .sort methodudu ilədə yazilan həll kifayət qədər yaxşıdır.
+
+*/
+
+
+class Solution {
+  int heightChecker(List<int> heights) {
+    // List<int> list = [];
+    // list.addAll(heights);
+
+    // list.sort();
+    // int c =0;
+
+    // for(int i = 0 ; i < list.length ; i++){
+    //     if(list[i] != heights[i]){
+    //         c++;
+    //     }
+    // }
+    // return c;
+
+    List<int> count = List.filled(101, 0);
+
+    for (int height in heights) {
+      count[height]++;
+    }
+    int index = 0;
+    int counter = 0;
+
+    for (int height = 1; height <= 100; height++) {
+      while (count[height] > 0) {
+        if (heights[index] != height) {
+          counter++;
+        }
+        index++;
+        count[height]--;
+      }
+    }
+    return counter;
+  }
+}
+
+void main() {
+  List<int> heights = [1, 1, 4, 2, 1, 3];
+  Solution solution = Solution();
+
+  int result = solution.heightChecker(heights);
+  print(result); // 3
+}
