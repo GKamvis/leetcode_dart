@@ -1,0 +1,25 @@
+/*
+Time Complexity : O(log N) while dövrü hər dəfə işlədikdə numBottles dəyişəni numExchange dəfə azalır.
+Space Complexity O(1) bütün dəyişənlər sabitdir.
+*/
+class Solution {
+  int numWaterBottles(int numBottles, int numExchange) {
+    int empty = 0;
+    int total = 0;
+
+    while(numBottles > 0){
+        total += numBottles;
+        empty += numBottles;
+        numBottles = empty ~/ numExchange;
+        empty = empty % numExchange;
+    }
+    return total;
+  }
+}
+
+void main(){
+var sol = Solution();
+int numBottles = 15;
+int numExchange = 4;
+print(sol.numWaterBottles(numBottles , numExchange)); // 19
+}
