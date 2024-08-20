@@ -1,0 +1,29 @@
+/*
+Time Complexity : O(N*M) ən pis halda (haystack "aaaaa" və needle "aaab) kimi olarsa 
+Space Complexity O(1)
+*/
+class Solution {
+  int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+
+  String haystack1 = "hello";
+  String needle1 = "ll";
+  print("Index of '$needle1' in '$haystack1': ${solution.strStr(haystack1, needle1)}");
+
+  String haystack2 = "aaaaa";
+  String needle2 = "bba";
+  print("Index of '$needle2' in '$haystack2': ${solution.strStr(haystack2, needle2)}");
+
+  String haystack3 = "abcdef";
+  String needle3 = "";
+  print("Index of empty string in '$haystack3': ${solution.strStr(haystack3, needle3)}");
+
+  String haystack4 = "needle in a haystack";
+  String needle4 = "needle";
+  print("Index of '$needle4' in '$haystack4': ${solution.strStr(haystack4, needle4)}");
+}
