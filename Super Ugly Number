@@ -1,0 +1,32 @@
+/*
+Time Complexity : O(M *K) əslində O( (K-1) * M ) m primes listinin uzunluğu  k isə istənilən n-ci elementi təmsil edir. Ən kiçiyini tapmaq üçün olan reduce methoduda O(M) qədər vaxt tələb edir.
+
+Space Complexity : O(K)  O(K + M + M) ~= O(K)  dp listi K qədər index və uglyNums isə M qədər yer tələb edir.
+*/
+
+int nthSuperUglyNumber(int n, List<int> primes) {
+  int size = primes.length;
+  int ugly = 1;
+  List<int> dp = [1];
+  List<int> index = List.filled(size, 0);
+  List<int> uglyNums = List.filled(size, 1);
+
+  for (int i = 1; i < n; i++) {
+    for (int j = 0; j < size; j++) {
+      if (uglyNums[j] == ugly) {
+        uglyNums[j] = dp[index[j]] * primes[j];
+        index[j]++;
+      }
+    }
+    ugly = uglyNums.reduce((a, b) => a < b ? a : b);
+    dp.add(ugly);
+  }
+
+  return dp.last;
+}
+
+void main() {
+  int n = 12;
+  List<int> primes = [2, 7, 13, 19];
+  print(nthSuperUglyNumber(n, primes)); // Nəticə: 32
+}
