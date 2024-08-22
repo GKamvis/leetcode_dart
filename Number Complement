@@ -1,0 +1,18 @@
+/*
+Time Complexity : O(1)    bitLength O(1) << (Shift Operatoru) O(1) qədər vaxt tələb edir.
+Space Complexity : O(1)  iki integer dəyişən var sabit yer tələb edirlər.
+*/
+
+class Solution {
+  int findComplement(int num) {
+    int bitSize = num.bitLength;
+    int mask = (1 << bitSize) - 1;
+    return num ^ mask; 
+  }
+}
+
+void main() {
+  var sol = Solution();
+  int num = 5;
+  print(sol.findComplement(num));
+}
