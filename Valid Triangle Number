@@ -1,0 +1,35 @@
+/*
+Time Complexity : O(N ^ 2) ən pis halda for və while dövrü n qədər iterasiya edə bilər. İç içə olduğunda kvadratına yüksəlir. Və sort methodu O(N LOG N) qədər zaman tələb edir.
+Space Complexity O(N) .sort methodu istifadə edirik bu sort methodunda O(N) qədər yaddaş tələb olunur
+*/
+
+//  i                  j   k
+// [3, 19, 22, 24, 35, 82, 84]
+
+
+class Solution {
+  int triangleNumber(List<int> nums) {
+    int counter = 0;
+    nums.sort();
+
+    for(int a = nums.length -1 ;a > 1  ;a--){
+        int i = 0;
+        int j = a-1;
+
+        while(j > i){
+            if(nums[i] + nums[j] >nums[a]){
+                counter += j - i;
+                j--;
+            }
+            else i++;
+        }
+    }
+    return counter;
+
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  print(sol.triangleNumber([3, 19, 22, 24, 35, 82, 84])); 
+}
