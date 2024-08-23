@@ -1,0 +1,27 @@
+/*
+Time Complexity : O(LogN) hər dəfə yoxlanacaq ədədlərin sayı təxminən 2 dəfə azalır.
+Space Complexity : O(1) bütün dəyişənlər sabit yer tələb edir.
+*/
+
+class Solution {
+  int singleNonDuplicate(List<int> nums) {
+    int left = 0;
+    int right = nums.length -1;
+
+    while(left < right){
+        int mid = left + (right - left)~/2;
+
+        if(mid % 2 == 1) mid--;  
+
+        if(nums[mid] != nums[mid+1]) right = mid;
+
+        else left = mid + 2;
+
+    }
+    return nums[left];
+  }
+}
+void main() {
+  Solution sol = Solution();
+  print(sol.singleNonDuplicate([1,1,2,3,3,4,4,8,8])); 
+}
