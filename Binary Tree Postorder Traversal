@@ -1,0 +1,44 @@
+/*
+Time Complexity : O(N) bütün düyünlər gəzilir.
+Space Complexity : O(N)   list O(N) + call Stack(funksiya çağrıldıqda yaddaşda toplanılır) ən pis halda O(N)  ümumi olaraq O(N) + O(N) ~=O(N)
+*/
+
+
+  class TreeNode {
+    int val;
+    TreeNode? left;
+    TreeNode? right;
+    TreeNode([this.val = 0, this.left, this.right]);
+  }
+ 
+class Solution {
+  List<int> postorderTraversal(TreeNode? root) {
+    List<int> list = [];
+
+    void traverse(TreeNode? node){
+        if(node == null) return;
+
+        traverse(node.left);
+        traverse(node.right);
+
+        list.add(node.val);
+    }
+
+    traverse(root);
+    return list;
+    
+  }
+}
+
+void main(){
+  Solution sol = Solution();
+  TreeNode tree = TreeNode(1);
+  tree.right = TreeNode(2);
+  tree.left = TreeNode(3);
+  tree.left!.left = TreeNode(4);
+  
+  print(sol.postorderTraversal(tree));
+  
+  
+  
+}
