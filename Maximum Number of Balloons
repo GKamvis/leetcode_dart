@@ -1,0 +1,50 @@
+/*
+Time Complexity : O(N) iki for dövrü var birincisi n qədər dövr edir ikincisi yanlız 5 dəfə bunu sabit qəbul edib O(N) + O(1) kimi fikirləşə bilərik
+Space Complexity : O(1) List və Map var doğrudur ancaq Map-də max 26 fərqli element key kimi saxlanila bilər , Listə isə 5 element saxlanılıb yəni sabit yaddaş tələb edir.
+
+*/
+
+
+
+
+class Solution {
+  int maxNumberOfBalloons(String text) {
+    Map<String, int> letterCount = {};
+    for (int i = 0; i < text.length; i++) {
+      String letter = text[i];
+      if (letterCount.containsKey(letter)) {
+        letterCount[letter] = letterCount[letter]! + 1;
+      } else {
+        letterCount[letter] = 1;
+      }
+    }
+
+    if (!letterCount.containsKey("b") || 
+        !letterCount.containsKey("a") || 
+        !letterCount.containsKey("l") || 
+        !letterCount.containsKey("o") || 
+        !letterCount.containsKey("n")) {
+      return 0;
+    }
+
+    letterCount["l"] = letterCount["l"]! ~/ 2;
+    letterCount["o"] = letterCount["o"]! ~/ 2;
+
+    int? minValue;
+    List<String> balloonLetters = ["b", "a", "l", "o", "n"];
+
+    for (String letter in balloonLetters) {
+      if (minValue == null || letterCount[letter]! < minValue) {
+        minValue = letterCount[letter];
+      }
+    }
+
+    return minValue ?? 0;
+  }
+}
+
+void main() {
+  var sol = Solution();
+  String text = "nlaeebolkoe";
+  print(sol.maxNumberOfBalloons(text));    
+}
