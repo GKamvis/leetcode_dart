@@ -1,0 +1,32 @@
+/*
+ * Time Complexity : O(N KlogK) for dövrü ilə N qədər dövr edir və sort funskiyasida O(NlogN) qədər vaxt tələb edir , .split methoduda O(K) qədər müddətdə icra olunur , sondakı returndə O(N) qədər zaman tələb edir.
+ * Space Complexity : O(N * K) Map O(N) qədər List O(N) və .sort Funksiyasida o(K) qədər yaddaş tələb edir.
+ * 
+ */
+class Solution {
+  List<List<String>>? groupAnagrams(List<String> strs) {
+    Map<String , List<String>> map = {};
+    strs.forEach((s){
+      
+        List<String> list = s.split("");
+        list.sort((a , b) => a.compareTo(b));
+        String join = list.join('');
+      if(map.keys.contains(join)){
+        map[join]!.add(s);
+      }
+      else{
+        map[join] = [s];
+      }
+
+      
+    });
+    return map.values.toList();
+    
+    }
+}
+
+void main() {
+  var sol = Solution();
+  List<String> strs = ["eat","tea","tan","ate","nat","bat"];
+  print(sol.groupAnagrams(strs));    
+}
