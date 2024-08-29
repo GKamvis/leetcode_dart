@@ -1,0 +1,30 @@
+/*
+ * Time Complexity : O(N) for dövrü o(N)  While dövrü isə ən pis halda O(N - 1) qədər dövr edə bilər(ancaq hər for dövründə bu təkrarlana bilməz) ona görədə O(N)
+ * Space Complexity : O(N) days O(N) temp isə ən pis halda O(N-1) qədər element saxlaya bilər.
+ * */
+
+class Solution {
+  List<int> dailyTemperatures(List<int> temperatures) {
+    List<int> days = List.filled(temperatures.length, 0);
+    List<int> temp = [];
+    for(int i = 0 ; i < temperatures.length ; i++){
+        while(temp.isNotEmpty && temperatures[i] > temperatures[temp.last]){
+            int index = temp.removeLast();
+            days[index] = i - index;
+
+        }
+
+        temp.add(i);
+
+    }
+    return days;
+    
+  }
+}
+
+void main() {
+  var sol = Solution();
+  List<int> temperatures = [78,74,75,71,69,72,76,79];
+  print(sol.dailyTemperatures(temperatures));
+  
+}
