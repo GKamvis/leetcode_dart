@@ -1,0 +1,22 @@
+/*
+ * Time Complexity : O(N) for dövrü 2n qədər iteraiya edir. .add .contains methodlari O(1) qədər vaxt tələb edir
+ * Space Complexity : O(N) seen Set-i n qədər element saxlaya bilər tərkibində.
+ *
+ *   */class Solution {
+  int? repeatedNTimes(List<int> nums) {
+    Set<int> seen = {};
+
+    for( var num in nums){
+        if(seen.contains(num)){
+            return num;
+        }
+        seen.add(num);
+    }
+  }
+}
+
+void main(){
+  var sol = Solution();
+  List<int> nums = [1,2,3,3];
+  print(sol.repeatedNTimes(nums));
+}
