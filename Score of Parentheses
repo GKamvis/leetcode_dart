@@ -1,0 +1,31 @@
+/*
+ * Time Complexity : O(N) for dövrü n qədər dövr edir.
+ * Space Complexity : O(N) Stack listi  ən pis ehtimalda n-1 qədər element saxlaya bilər 
+ * */
+
+import 'dart:math';
+class Solution {
+  int scoreOfParentheses(String s) {
+    List<int> stack = [0];
+    for(int i = 0 ; i < s.length ; i++){
+    if( s[i] == '('){
+        stack.add(0);
+    }
+    else{
+        int first = stack.removeLast();
+        int second = stack.removeLast();
+        stack.add(second + max(2*first , 1));
+    }
+  }
+     return stack.first;
+    
+  }
+
+}
+
+void main(){
+    var sol = Solution();
+    String s =  "()()";
+    print(sol.scoreOfParentheses(s));
+}
+
