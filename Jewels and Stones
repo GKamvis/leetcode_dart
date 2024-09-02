@@ -1,0 +1,29 @@
+/*
+ * Time Complexity : O(N + M) .split O(M) .set O(M) və for dövrü O(N) qədər zaman *        mürəkkəbliyinə malikdir
+ * Space Complexity : O(M) setdə ən pis halda M qədər elemet saxlanıla bilər.
+ * */
+
+
+class Solution {
+  int numJewelsInStones(String jewels, String stones) {
+    Set<String> set = jewels.split('').toSet();
+
+    int count = 0;
+
+    for(int i = 0 ; i < stones.length; i++){
+        if(set.contains(stones[i])) count++;
+    }
+    return count;
+
+
+    
+  }
+}
+
+void main() {
+  var sol = Solution();
+  String jewels = "aA";
+  String stones = "aAAbbbb";
+  print(sol.numJewelsInStones(jewels , stones));
+  
+}
