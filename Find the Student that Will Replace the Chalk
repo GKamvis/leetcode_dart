@@ -1,0 +1,24 @@
+/*
+ * Time complexity : O(N) .reduce methodu listdə bütün elementlərin üzərindən keçir O(N) qədər zamant tələb edir.For dövrüdə ən pis halda O(N) qədər vaxt tələb edir.
+ * Space Complexity : O(1) iki integer yaratdıq və O(1) yaddaş mürəkəbliyinə malikdir.
+ * */
+class Solution {
+ int chalkReplacer(List<int> chalk, int k) {
+    int sum = chalk.reduce((value , element) => value + element);
+    k %= sum;
+    for(int i = 0 ; i < chalk.length; i++){
+      k -=chalk[i];
+      if(k < 0) return i;
+    }
+    return 0 ;
+  }
+}
+
+void main() {
+  Solution sol = Solution();
+  List<int> chalk = [3,4,1,2];
+  int k = 27;
+  
+  print(sol.chalkReplacer(chalk , k));
+  
+}
