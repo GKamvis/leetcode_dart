@@ -1,0 +1,40 @@
+/*
+ * Time Complexity : O(N) demək olar bütün dövrlər O(N) qədər zaman tələb edir. .indexOf methodu O(N) qədər ən sondakı for dövrü (içində while) ->
+ * burada while O(log sum) for dövrü o(K) qədər --> O(s.length + k * log(sum)) ~= ortalamada bu kod O(N) zaman mürəkkəbliyinə malikdir
+ * 
+ * Space Complexity : O(N)  burada O(s.length) qəddər yaddaş tələb olunur.
+ * */
+class Solution {
+  int getLucky(String s, int k) {
+    String alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    String nums = '';
+    
+    for(int j = 0 ; j < s.length ; j++){
+      int index = alphabet.indexOf(s[j]) + 1; 
+      nums += index.toString();
+    }
+    
+    int sum = 0;
+    for (int i = 0; i < nums.length; i++) {
+      sum += int.parse(nums[i]);
+    }
+
+    for (int i = 1; i < k; i++) {
+      int newSum = 0;
+      while (sum > 0) {
+        newSum += sum % 10;
+        sum ~/= 10;
+      }
+      sum = newSum;
+    }
+
+    return sum;
+  }
+}
+void main() {
+  Solution sol = Solution();
+  String s = "leetcode";
+  int k = 2;
+  print(sol.getLucky(s, k));
+  
+}
