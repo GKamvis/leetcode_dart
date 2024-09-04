@@ -2,7 +2,7 @@
 Time Complexity : O(N)
 Space Complexity : O(1)
 
-Dinamik proqramlaşdırma (Bottom up )
+Dinamik proqramlaşdırma (Bottom up ) Tabulation 
 */
 
 class Solution {
