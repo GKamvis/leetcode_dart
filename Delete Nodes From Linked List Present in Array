@@ -1,0 +1,56 @@
+/*
+ * Time Complexity : O(N + M) toSet Methodu O(Nums.length) , While dövrü O(N) ==> Ortalamada O(N + M). Setdə axtarış O(1) zaman mürəkkəbliyinə malikdir
+ * Space Complexity : O(M)    Setdə ən pis ehtimalda m qədər element saxlana bilər.
+ * 
+ * */
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+class Solution {
+  ListNode? modifiedList(List<int> nums, ListNode? head) {
+    Set<int> numSet = nums.toSet();
+
+    ListNode? dummy = ListNode( 0 , head);
+    ListNode? current = dummy;
+
+    while(current?.next !=null){
+        if(numSet.contains(current!.next!.val)){
+            current.next = current.next?.next;
+        }
+        else{
+            current = current.next;
+        }
+    }
+    return dummy.next;
+
+    
+  }
+}
+
+
+
+
+
+
+
+
+void main() {
+  List<int> nums = [1, 3, 4];
+
+  ListNode head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))));
+
+  Solution solution = Solution();
+  ListNode? modifiedHead = solution.modifiedList(nums, head);
+
+  printList(modifiedHead);
+}
+
+void printList(ListNode? head) {
+  ListNode? current = head;
+  while (current != null) {
+    print(current.val);
+    current = current.next;
+  }
+}
