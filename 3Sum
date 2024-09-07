@@ -1,0 +1,45 @@
+/*
+ * Time Complexity : O(N ^ 2) .sort(N log N) for dövrü daxilindəki while dövrləri ilə birlikdə  O(N ^2) 
+ * Space Complexity : O(n * m + N) leetcode O(1) kimi hesabladı ancaq .sort O(N) qədər ən pis halda bütün elementlər üçlü kombinaiyaya daxil olacaq.
+ * */
+class Solution {
+  List<List<int>> threeSum(List<int> nums) {
+    nums.sort();
+    int n = nums.length;
+    List<List<int>> result = [];
+    if (nums.isEmpty || nums[0] > 0) return [];
+
+    for(int i = 0 ; i < n ; i++){
+        if(nums[i] > 0) break;
+        if(i >0 && nums[i] == nums[i-1]) continue;
+        int l = i+1;
+        int r = n-1;
+        int sum = 0;
+
+        while(l < r){
+            sum = nums[i] + nums[l] + nums[r];
+            if(sum > 0) r--;
+            else if(sum < 0) l++;
+            else{
+                result.add([nums[i] , nums[l] , nums[r]]);
+                int lastL = nums[l];
+                int lastR = nums[r];
+                while(l < r && nums[l] == lastL){
+                    l++;
+                }
+                while(l < r && nums[r] == lastR){
+                    r--;
+                }
+            }
+        }
+
+     }
+     return result;
+  }
+}
+
+void main(){
+  final sol = Solution();
+  List<int> nums = [-1,0,1,2,-1,-4];
+  print(sol.threeSum(nums));
+}
