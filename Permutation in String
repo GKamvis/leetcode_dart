@@ -1,0 +1,36 @@
+/*
+ * Time Complexity : O(N + M) iki for dövrü  O(N)  + O(M)  => O(M + N)  və ListEquality sinifi   listləri müqaisə edir yəqinki O(N) qədər zaman tələbb olunur 
+ * O(N + M ) + O( N + M)  ==~> O(N+ M)
+ * Space Complexity : O(1) iki list hər biri 26 elemet saxlayacaq buna görədə  sabit mürəkkəbliyə malik olduğunu qəbul etmək olar.
+ * */
+import 'package:collection/collection.dart'; 
+class Solution {
+  bool checkInclusion(String s1, String s2) {
+    int len1 = s1.length;
+    int len2 = s2.length;
+    if( len1 > len2) return false;
+    List<int> listS1 = List.filled(26 , 0);
+    List<int> listS2 = List.filled(26 , 0);
+    for(int i = 0 ; i < len1 ; i++){
+      listS1[s1.codeUnits[i] - 97]++;  
+      listS2[s2.codeUnits[i] - 97]++;
+    }
+    var equality = ListEquality();
+    if(equality.equals(listS1,listS2)) return true;
+    
+    for(int i = len1; i < len2 ; i++){
+      listS2[s2.codeUnitAt(i) - 97]++;
+      listS2[s2.codeUnitAt(i - len1) - 97]--;
+      if(equality.equals(listS1,listS2)) return true;
+
+    }
+    
+    return false;
+  }
+}
+void main() {
+  var sol = Solution();
+  String s1 = "cba";
+  String s2 = "bbbca";
+  print(sol.checkInclusion(s1 , s2));
+}
