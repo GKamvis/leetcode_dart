@@ -1,0 +1,69 @@
+/*
+ Time Complexity : O(N)  O(N) + O(N)  ==> O(N) for dövrləri O(n) qədər zaman tələb edir.
+ Space Complexity : O(K) k qədər element listin  daxildə saxlanılır.
+ */
+
+class ListNode {
+  int val;
+  ListNode? next;
+  ListNode([this.val = 0, this.next]);
+}
+
+class Solution {
+  List<ListNode?> splitListToParts(ListNode? head, int k) {
+    int len = 0;
+    List<ListNode?> result = List.filled(k, null);
+    ListNode? node = head;
+    
+    while (node != null) {
+      len++;
+      node = node.next;
+    }
+    
+    int n = len ~/ k;
+    int left = len % k;
+    node = head;
+    ListNode? prev = null;
+    
+    for (int i = 0; i < k && node != null; i++, left--) {
+      result[i] = node;
+
+      for (int j = 0; j < n + (left > 0 ? 1 : 0); j++) {
+        prev = node;
+        node = node!.next;
+      }
+      
+      if (prev != null) {
+        prev.next = null;
+      }
+    }
+    return result;
+  }
+}
+
+void main() {
+  //  1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> null
+  ListNode n7 = ListNode(7);
+  ListNode n6 = ListNode(6, n7);
+  ListNode n5 = ListNode(5, n6);
+  ListNode n4 = ListNode(4, n5);
+  ListNode n3 = ListNode(3, n4);
+  ListNode n2 = ListNode(2, n3);
+  ListNode n1 = ListNode(1, n2);
+  
+  Solution solution = Solution();
+  List<ListNode?> result = solution.splitListToParts(n1, 3);  
+  
+  void printList(ListNode? node) {
+    while (node != null) {
+      print(node.val);
+      node = node.next;
+    }
+    print('null');
+  }
+
+  for (int i = 0; i < result.length; i++) {
+    print('Part ${i + 1}:');
+    printList(result[i]);
+  }
+}
