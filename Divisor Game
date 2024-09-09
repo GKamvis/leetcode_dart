@@ -1,0 +1,7 @@
+// Time Complexity : O(1) & operatoru ilə  yoxlayir ən sağdakı bit 0 olarsa cüt 1 olarsa tək olacaq. (n & 1 == 0) daha sürətlidir mod almaqdan (n % 2 == 0)
+// Space Complexity : O(1)
+class Solution {
+  bool divisorGame(int n) {
+    return n & 1 ==0;  
+  }
+}
