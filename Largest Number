@@ -1,0 +1,24 @@
+/*
+Time Complexity : O(N Log N) .sort methodu O(N log N) .map və .join methodları O(n) qədər zaman tələb edir.
+Space Complexity : O(N) .sort methodu O(N) yaranan Listdə O(N) qədər yaddaş istifadə edir.
+*/
+class Solution {
+  String largestNumber(List<int> nums) {
+    List<String> list = nums.map((e) => e.toString()).toList();
+    list.sort((a, b) => (b + a).compareTo(a + b));
+    print(list);
+    String result = list.join('');
+    if (result[0] == '0') {
+      return '0';
+    }
+    return result;
+  }
+}
+
+void main() {
+  List<int> nums = [3, 30, 34, 5, 9];
+  Solution solution = Solution();
+
+  String result = solution.largestNumber(nums);
+  print('result : $result');
+}
