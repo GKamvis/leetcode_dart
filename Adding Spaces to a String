@@ -1,0 +1,27 @@
+/*
+Time Complexity : O(N) for dövrü O(N) .join methodu O(N) => O(N + N)
+Space Complexity : O(N) result listində  (n + spaces.length) qədər element saxlanacaq.
+*/
+
+class Solution {
+  String addSpaces(String s, List<int> spaces) {
+    List<String> result = [];
+    int j = 0;
+    for (int i = 0; i < s.length; i++) {
+      if (j < spaces.length && i == spaces[j]) {
+        result.add(' ');
+        j++;
+      }
+      result.add(s[i]);
+    }
+    return result.join("");
+  }
+}
+void main() {
+  List<int> spaces = [8, 13, 15];
+  String s = "LeetcodeHelpsMeLearn";
+  Solution solution = Solution();
+
+  String result = solution.addSpaces(s, spaces);
+  print('result : $result');
+}
