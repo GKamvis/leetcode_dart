@@ -1,0 +1,42 @@
+/*
+Time Complexity : O(logN) təxminən bütün həllər bu qədər zaman tələb edəcək. ilk iki həldə hər dövrdə  iki dəfə azalır. son həldə isə daha da çox n-1 qədər azalır(yəni sonuncu həll daha effektivdir)
+Space Complexity : O(1) integerlər vahid yaddaş tələb edir.
+*/
+// class Solution {
+//   int minBitFlips(int start, int goal) {
+//     int result = 0;
+//     while(start > 0 || goal >0){
+//         if((start & 1) != (goal & 1)) result++; //  if((start %  2) != (goal %  2)) result++;
+//         start >>=1;  // start ~/=2;
+//         goal >>=1;  // goal ~/=2;
+//     }
+//     return result;
+//   }
+// }
+// class Solution {
+//   int minBitFlips(int start, int goal) {
+
+//     int result = 0;
+//     int n = start ^ goal;
+
+//     while(n > 0){
+//         result += n & 1; //  result += n % 2;
+//         n >>= 1; //  n~/=2;
+//     }
+//     return result;
+//   }
+// }
+class Solution {
+  int minBitFlips(int start, int goal) {
+
+    int result = 0;
+    int n = start ^ goal;
+
+    while(n > 0){
+      n = n & (n - 1);
+      result++;
+    }
+    return result;
+  }
+}
+
