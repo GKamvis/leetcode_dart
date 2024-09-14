@@ -1,0 +1,30 @@
+/*
+ * Time Complexity : O(N) reduce(max) ilə O(N) , for dövrü ilədə O(N) qədər zaman tələb olunur.
+ * O(N+N) ~=O(N)
+ * Space Complexity : O(1) 3 dəyişən istifadə etmişəm əlavə yaddaş tələb etmir
+ * */
+import 'dart:math';
+
+class Solution {
+  int longestSubarray(List<int> nums) {
+    int target = nums.reduce(max);
+    int res = 0;
+    int len = 0;
+    for (int num in nums) {
+      if (num == target) {
+        len++;
+      } else {
+        len = 0;
+      }
+      res = max(res, len);
+    }
+    return res;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  List<int> nums = [1, 2, 3, 3, 2, 2, 3, 3, 3];
+  int result = solution.longestSubarray(nums);
+  print(result);  
+}
