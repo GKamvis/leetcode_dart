@@ -1,0 +1,34 @@
+/*
+ * Time Complexity : O(N) iki for dövrü var ən pis halda hər ikisi s.length dəfə dövr edəcəklər
+ * Space Complexity : O(N) Map istifadə etmişəm ən pis halda bütün hərflər unikal olarsa N qədər yaddaş 
+ * tələb edəcək
+ * */
+class Solution {
+  int? longestPalindrome(String s) {
+    Map<String , int> counterMap = {};
+    for(var letter in s.split('')){
+        if(counterMap.containsKey(letter)){
+            counterMap[letter] =  counterMap[letter]! + 1;
+        }
+        else{
+             counterMap[letter] = 1;
+        }
+    }
+    int sum = 0;
+    for(int count in counterMap.values){
+        if(count % 2 == 0) sum+=count;
+        else sum+=count -1;
+
+    }
+    return sum == s.length ? s.length: sum +1;
+  }
+}
+
+void main() {
+  final sol = Solution();
+  String s = "abccccdd";
+  
+  print(sol.longestPalindrome(s));
+  
+  
+}
