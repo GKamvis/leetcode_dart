@@ -1,0 +1,32 @@
+/*
+* Time Complexity : O(N) ikinci for dövrünün daxilində while dövrü olmasına baxmayaraq  ən pis halda  O(N) qədər zaman tələb edə bilər.O(N + N + N) ~=O(N)
+ * Space Conplexity : O(N) Map-də n qədər Setdə isə ən pis halda n qədər element saxlanıla bilər ona görədə O(N ) qədər yaddaş tələb olunur
+ * */
+class Solution {
+  int minDeletions(String s) {
+
+    Map<String , int> freqChar = {};
+    Set<int> freqInt = {};
+    int deletions = 0;
+
+    for(int i = 0 ; i < s.length ; i++){
+        freqChar[s[i]] = (freqChar[s[i]] ?? 0) +1;
+    }
+
+    for(int freq in freqChar.values){
+        while( freq > 0 && freqInt.contains(freq)){
+            freq--;
+            deletions++;
+        }
+        freqInt.add(freq);
+    }
+
+    return deletions;
+    
+  }
+}
+void main() {
+  final sol = Solution();
+  String s = "aabbab";
+  print(sol.minDeletions(s));
+}
