@@ -1,0 +1,28 @@
+/*
+ * Time Complexity : O(N ^ 2) iç içə keçmiş for loopları N ^ 2 qədər zaman tələb edir. .length O(N)   O(N ^ 2 + N) ~= O(N ^ 2)
+ * Space Complexity : O(N) ən pis halda iki listdə O(n) qədər yaddaş tələb edər.
+ * */
+class Solution {
+  List<String> uncommonFromSentences(String s1, String s2) {
+
+    List<String> result = [];
+    List<String> rawList = s1.split(" ");
+    rawList.addAll(s2.split(" "));
+    int n = rawList.length;
+
+    for(int i = 0 ; i < n ; i++){
+        int c = 0;
+        for(int j = 0 ; j < n ; j++){
+            if(rawList[i] == rawList[j] && i != j) c++;
+        }
+        if(c==0) result.add(rawList[i]);
+    }
+    return result;
+  }
+}
+void main() {
+  final sol = Solution();
+  String  s1 = "this apple is sweet";
+  String s2 = "this apple is sour";
+  print(sol.uncommonFromSentences(s1 , s2));
+}
