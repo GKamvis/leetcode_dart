@@ -1,0 +1,35 @@
+/*
+ * Time Complexity : O(N Log N) .sort methodu ən pis halda (N log N) qədər vaxt tələb edir. for dövrü O(N) ,   O(N log N  + N) ~= O(N log N)
+ * Space Complexity : O(N) .sort methodu O(N) yaddaş mürəkəbliyinə malikdir.
+ * */
+import "dart:math";
+class Solution {
+  int numberOfWeakCharacters(List<List<int>> properties) {
+    int count = 0;
+    int maxV = 0;
+   // properties.sort((a , b) => a[0] != b[0] ? a[0].compareTo(b[0]) : a[1].compareTo(b[1]));
+    properties.sort((a, b) {
+      int firstComparison = b[0].compareTo(a[0]);
+      if (firstComparison != 0) {
+        return firstComparison;
+      } else {
+        return a[1].compareTo(b[1]);
+      }
+    });
+    for(var list in properties ){
+        if(list[1] < maxV) count++;
+        maxV = max(maxV , list[1]);
+    }
+
+
+    return count;
+
+
+    
+  }
+}
+void main() {
+  final sol = Solution();
+  List<List<int>> properties = [[5,5],[6,3],[3,6]];
+  print(sol.numberOfWeakCharacters(properties));
+}
