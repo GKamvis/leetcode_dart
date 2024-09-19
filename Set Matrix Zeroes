@@ -1,0 +1,39 @@
+/*
+Time Complexity : O(N * M) 2d array üzərindən iki dəfə tam keçirik
+Space Complexity : O(N + M) N və M sayda element iki list-də saxlanacaq
+*/
+
+class Solution {
+    void setZeroes(List<List<int>> matrix) {
+
+        List<int> row = List.filled(matrix.length , 0);
+        List<int> column = List.filled(matrix[0].length , 0);
+
+        for(int i = 0 ; i < matrix.length ; i++) {
+            for(int j = 0 ; j < matrix[0].length ; j++) {
+                if(matrix[i][j] == 0) {
+                    row[i] = 1;
+                    column[j] = 1;
+                }
+            }
+        }
+        print(row);
+        print(column);
+
+        for(int i = 0 ; i <matrix.length ; i++) {
+            for(int j = 0 ; j < matrix[0].length ; j++) {
+                if(column[j] == 1 || row[i] == 1) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+
+    }
+}
+void main() {
+    final sol = Solution();
+    List<List<int>>  matrix = [[1,1,1],[1,0,1],[1,1,1]];
+    sol.setZeroes(matrix);
+    print(matrix);
+}
