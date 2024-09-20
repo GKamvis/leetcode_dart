@@ -1,0 +1,42 @@
+/*
+ * Time Complexity : O(N Log N) .sort methodu O(N log N) qədər .reduce O(N) , while dövrü n/2 , .length isə O(N) qədər vaxt tələb edir
+ * Space Complexity : O(N) .sort methodu O(N) qədər yaddaş istifadə edəcək , digər dəyişənlər sabit yer tutur. Leetcode O(1)  olduğunu göstərir 
+ * */
+
+class Solution {
+  int dividePlayers(List<int> skill) {
+    int teams = skill.length ~/ 2;
+    int totalSum = skill.reduce((a, b) => a + b);
+    
+    if (totalSum / teams > totalSum ~/ teams) return -1;
+    
+    int twoSum = totalSum ~/ teams;
+    skill.sort(); 
+    int res = 0;
+    int l = 0;
+    int r = skill.length - 1;
+    
+    while (l < r) {
+      int diff = skill[l] + skill[r];    
+      
+      if (diff != twoSum) return -1;
+      
+      res += skill[l] * skill[r];
+      l++;
+      r--;
+    }
+    return res;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  
+  List<int> skill1 = [1, 2, 3, 4];
+  List<int> skill2 = [1, 1, 2, 3];
+  List<int> skill3 = [3, 3, 3, 3];
+  
+  print(solution.dividePlayers(skill1)); // Nəticə: 10
+  print(solution.dividePlayers(skill2)); // Nəticə: -1
+  print(solution.dividePlayers(skill3)); // Nəticə: 18
+}
