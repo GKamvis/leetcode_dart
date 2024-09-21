@@ -1,0 +1,27 @@
+/*
+ * Time Complexity : O(N)  bir for dövrü var və daxilində O(1) mürəkkəbliyə malik funksiyaları işlədir.
+ * Space Complexity : O(N) res listi N qədər element saxlayacaq 
+ * */
+class Solution {
+  List<int> lexicalOrder(int n) {
+    List<int> res = [];
+    int cur = 1;
+    for(int i = 1 ; i <= n ; i++){
+        res.add(cur);
+        if(cur * 10 <= n) cur*=10;
+        else if(cur + 1 <= n && cur % 10 != 9) cur++;
+        else{
+            while((cur ~/10) % 10 == 9) cur~/=10;
+            cur = cur ~/10 + 1;
+        }
+    }
+    return res;
+  }
+}
+
+void main() {
+  Solution solution = Solution();
+  int n = 50; 
+  List<int> result = solution.lexicalOrder(n);
+  print(result); 
+}
