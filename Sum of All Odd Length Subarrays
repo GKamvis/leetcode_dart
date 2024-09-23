@@ -1,0 +1,23 @@
+/* 
+Time Complexity : O(N ^ 3) təxmini olaraq kubik zaman mürəkkəbliyinə malikdir 
+Space Complexity : O(1) əlavə yaddaş istifadə etmirik.
+*/
+class Solution {
+    int sumOddLengthSubarrays(List<int> arr) {
+        int sum = 0;
+        for(int i = 0 ; i < arr.length ; i++) {
+            for(int j = i ; j < arr.length ; j++) {
+                if((j - i) % 2 == 0) {
+                    for(int a = i ; a <= j ; a++) sum +=arr[a];
+                }
+            }
+        }
+        return sum;
+    }
+}
+void main() {
+    final sol = Solution();
+    List<int> arr = [1,4,2,5,3];
+
+    print(sol.sumOddLengthSubarrays(arr));
+}
