@@ -1,0 +1,41 @@
+/*
+Time Complexity : O(N)  bütün nodelərə bir dəfə müraciət olunur.
+Space Complexity : O(N) ən pis halda ağacın hündürlüyü qədər element saxlana bilər 
+
+class TreeNode {
+    int val;
+    TreeNode? left;
+    TreeNode? right;
+    TreeNode([this.val = 0, this.left, this.right]);
+}
+
+class Solution {
+    List<int> rightSideView(TreeNode? root) {
+        List<int> res = [];
+
+        void search(TreeNode? node , int level) {
+            if(node == null) return;
+
+            if(res.length == level) res.add(node.val);
+            search(node.right , level + 1);
+            search(node.left , level + 1);
+        }
+
+        search(root , 0);
+
+        return res;
+
+    }
+}
+void main() {
+    TreeNode root = TreeNode(1);
+    root.left = TreeNode(2);
+    root.right = TreeNode(3);
+    root.left!.right = TreeNode(5);
+    root.right!.right = TreeNode(4);
+
+    Solution solution = Solution();
+    List<int> result = solution.rightSideView(root);
+
+    print("$result"); 
+}
