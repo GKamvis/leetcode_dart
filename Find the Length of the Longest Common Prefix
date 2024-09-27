@@ -1,0 +1,23 @@
+// Time Complexity : O(N^2)
+//Space Complexity : O(N)
+class Solution {
+    int? longestCommonPrefix(List<int> arr1, List<int> arr2) {
+        Set set = {};
+        for(var val in arr2) {
+            String s = '$val';
+            for(int i = 0 ; i < s.length ; i++) {
+                int cur = int.parse(s.substring(0 , i + 1));
+                set.add(cur);
+            }
+        }
+        int res = 0;
+        for(var val in arr1) {
+            String s = '$val';
+            for(int i = res ; i < s.length ; i++) {
+                int cur = int.parse(s.substring(0 , i + 1));
+                if(set.contains(cur)) res = i+1;
+            }
+        }
+        return res;
+    }
+}
