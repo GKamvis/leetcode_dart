@@ -1,4 +1,4 @@
-// Time complexity : O(NlogN) .sort methodu varO(LogN) və 2 dəfə n qədər iterasiya edən while dövrü var. i O(n) + O(n) + O(n log n) + O(n) = O(n log n) 
+/// Time complexity : O(NlogN) .sort methodu varO(LogN) və 2 dəfə n qədər iterasiya edən while dövrü var. i O(n) + O(n) + O(n log n) + O(n) = O(n log n) 
 //Space complexity : O(N) bir list var N element tutur.
 
 class ListNode {
