@@ -1,3 +1,7 @@
+/*
+Time Complexity : O(N) bir for dövrü boyunca işləyir
+Space Complexity : O(N) res n qədər element saxlayir
+*/
 class Solution {
     List<List<int>> findMatrix(List<int> nums) {
         List<List<int>> res = [];
