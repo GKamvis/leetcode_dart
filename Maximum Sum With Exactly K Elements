@@ -1,0 +1,28 @@
+/*
+Time complexity : O(N Log N) .sort methodu bu qədər zaman tələb edir
+Space Complexity O(N) . sort methodu O(N) qədər yaddaş tələb edir . 
+*/
+class Solution {
+  int maximizeSum(List<int> nums, int k) {
+    nums.sort();
+    int last = nums.last;
+    //int sum = 0;
+    // for(int i = 0 ; i < k ; i++){
+    //     sum +=last;
+    //     last++;
+    // }
+    //return sum;
+    return k*last + k*(k-1)~/2;
+  }
+}
+
+
+void main() {
+    Solution solution = Solution();
+
+    List<int> nums = [1, 3, 5, 2, 4];
+    int k = 3;
+
+    int result = solution.maximizeSum(nums, k);
+    print(result);
+}
