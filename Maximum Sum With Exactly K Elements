@@ -1,4 +1,5 @@
 /*
+Ardıcıl rəqəmlərin cəmi= (k(k−1))/2
 Time complexity : O(N Log N) .sort methodu bu qədər zaman tələb edir
 Space Complexity O(N) . sort methodu O(N) qədər yaddaş tələb edir . 
 */
