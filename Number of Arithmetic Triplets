@@ -1,3 +1,8 @@
+/*
+Time Complexity : O(N^3) iç-içə 3 for dövrü O(N * N * N)
+space Complexity : O(1)
+*/
+
 class Solution {
   int arithmeticTriplets(List<int> nums, int diff) {
     int n = nums.length;
