@@ -1,0 +1,31 @@
+/*
+Time Complexity : O(N * log(N))  binary searc O( LOG(N)) qədər , .map . fold methodları isə O(N) qədər vaxt tələb edirlər  yəni hər dəfə O(N + N) buda binary searchın daxilində olduqda O(N * LOG(N) ) kimi olacaq.
+Space Complexity : O(1) 
+
+*/
+class Solution {
+    int smallestDivisor(List<int> nums, int threshold) {
+        int l = 1;
+        int h = nums.reduce((a , b) => a > b ? a : b);
+
+        while(l <= h) {
+            int mid = (l + h )~/2;
+
+            int sum = nums.map((e) => (e / mid).ceil()).fold(0 ,(a,b) => a + b);
+
+            if(sum > threshold) l = mid + 1;
+            else h = mid -1;
+        }
+
+        return l;
+
+    }
+}
+
+void main() {
+    final sol = Solution();
+    List<int> nums = [1,2,5,9];
+    int threshold = 6;
+    print(sol.smallestDivisor(nums , threshold));
+
+}
