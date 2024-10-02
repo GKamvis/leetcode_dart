@@ -1,0 +1,34 @@
+/*
+
+Time Complexity : O(N LOG N) .sort (N log N) , toList, 2 for , containsKey hər biri ayrılıqda O(N) qədər zaman tələb edir
+Space Complexity : O(N) Map n sayda element saxlayir
+*/
+
+class Solution {
+    List<int> arrayRankTransform(List<int> arr) {
+        List<int> temp = arr.toList();
+        List<int> res = [];
+        temp.sort();
+        Map<int, int> RankMap = {};
+        int rank = 1;
+
+        for (int num in temp) {
+            if (!RankMap.containsKey(num)) {
+                RankMap[num] = rank;
+                rank++;
+            }
+        }
+        for(int num in arr) {
+            res.add(RankMap[num]!);
+        }
+        return res;
+    }
+}
+
+
+void main() {
+    final sol = Solution();
+    List<int>  arr = [40,10,20,30];
+
+    print(sol.arrayRankTransform(arr));
+}
