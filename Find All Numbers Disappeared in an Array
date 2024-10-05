@@ -1,0 +1,15 @@
+/*
+Time Complexity : O(N)
+Space Complexity : O(N)
+*/
+class Solution {
+  List<int> findDisappearedNumbers(List<int> nums) {
+    List<int> res = [];
+    Set<int> numsSet = nums.toSet();
+    for(int i = 1; i <= nums.length ; i++){
+        if(!numsSet.contains(i)) res.add(i);
+    }
+    return res;
+    
+  }
+}
