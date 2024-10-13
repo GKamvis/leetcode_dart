@@ -1,0 +1,40 @@
+
+// Time Complexity : O(N)
+// Space Complexity : O(N)
+
+Catalan nömrələri
+
+//     int fac(int num){
+//         int result = 1;
+//           for (int i = 1; i <= num; i++) {
+//           result *= i;
+//          }
+//         return result;
+//     }
+//     print(fac(2*n) ~/( fac(n + 1) * fac(n)));
+
+class Solution {
+  List<String> generateParenthesis(int n) {
+    final stack = <String>[];
+    final result = <String>[];
+    void back(int open , int closed){
+        if(open == closed && closed == n){
+            result.add(stack.join(''));
+            return;
+        }
+        if(open < n){
+            stack.add('(');
+            back(open + 1 , closed);
+            stack.removeLast();
+
+        }
+        if(closed < open){
+            stack.add(')');
+            back(open , closed + 1);
+            stack.removeLast();
+        }
+    }
+    back(0 , 0);
+    return result;
+  }
+}
