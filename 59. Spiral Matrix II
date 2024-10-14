@@ -1,0 +1,36 @@
+class Solution {
+  List<List<int>> generateMatrix(int n) {
+    int l = 0;
+    int t = 0;
+    int b = n - 1;
+    int r = n - 1;
+    int k = 1;
+    List<List<int>> matrix = List.generate(n, (_) => List.filled(n, 0));
+
+    while (l <= r && t <= b) {
+      // soldan sağa doldur
+      for (int col = l; col <= r; col++) matrix[t][col] = k++;
+      t++; // üst sıranı keçdik
+
+      // yuxarıdan aşağıya doldur
+      for (int row = t; row <= b; row++) matrix[row][r] = k++;
+      r--; // sağ sütunu keçdik
+
+      // aşağıdakı sağdan sola doldur
+      if (t <= b) {
+        for (int col = r; col >= l; col--) matrix[b][col] = k++;
+        b--; // alt sıranı keçdik
+      }
+
+      // aşağıdan yuxarı doldur
+      if (l <= r) {
+        for (int row = b; row >= t; row--) matrix[row][l] = k++;
+        l++; // sol sütunu keçdik
+      }
+    }
+    return matrix;
+  }
+}
+
+// Time Complexity : O(N ^ 2)
+// Space Complexity : O(N ^ 2)
