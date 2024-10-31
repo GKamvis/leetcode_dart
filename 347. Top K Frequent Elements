@@ -1,0 +1,24 @@
+class Solution {
+  List<int> topKFrequent(List<int> nums, int k) {
+   List<int> list = [];
+    Map<int , int> numMap = {};
+
+    for(int i = 0 ; i < nums.length ; i++){
+        numMap[nums[i]] = (numMap[nums[i]] ?? 0) +1;
+    }
+
+    var numEntries = numMap.entries.toList()..sort((a , b) => b.value.compareTo(a.value));
+
+    numMap = {for(var entries in numEntries ) entries.key : entries.value};
+    var key = numMap.keys.toList();
+
+    for(int i = 0 ; i < k ; i++){
+        list.add(key[i]);
+    }
+    return list;
+    
+  }
+}
+
+// Time Complexity : O(N LOG N )
+// Space Complexity : O(N)
