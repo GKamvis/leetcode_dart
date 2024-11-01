@@ -1,0 +1,99 @@
+// time Complexity : O(N * log K)
+// Space complexity : O(N)
+class Solution {
+  List<List<int>> kClosest(List<List<int>> points, int k) {
+
+    final pq = PriorityQueue<List<int>>((a, b) => dFromO(b).compareTo(dFromO(a)));
+
+
+    for(var p in points){
+        pq.add(p);
+        if(pq.length > k ){
+            pq.removeFirst();
+        }
+    }
+
+           
+
+
+
+    return pq._heap;
+    //  return pq.toList();
+    
+  }
+
+        int dFromO(List<int> point){
+        return point[0]*point[0] + point[1]*point[1];
+    }
+
+}
+
+
+class PriorityQueue<T> {
+  List<T> _heap = [];
+  final int Function(T, T) comparator;
+
+  PriorityQueue(this.comparator);
+
+  // Elementi heap-ə əlavə edir
+  void add(T value) {
+    _heap.add(value);
+    _bubbleUp(_heap.length - 1);
+  }
+
+  // Ən yüksək prioritetli elementi çıxarır
+  T removeFirst() {
+    if (_heap.isEmpty) {
+      throw StateError('Heap is empty');
+    }
+    T result = _heap.first;
+    _heap[0] = _heap.removeLast();
+    _bubbleDown(0);
+    return result;
+  }
+
+  // Prioritet sırasına görə ən yüksək prioritetli elementi qaytarır
+  T get first => _heap.first;
+
+  // Element sayını qaytarır
+  int get length => _heap.length;
+
+  bool get isEmpty => _heap.isEmpty;
+
+  // Elementləri aşağıya doğru tənzimləyir (heap xassəsini qoruyur)
+  void _bubbleDown(int index) {
+    int lastIndex = _heap.length - 1;
+    while (true) {
+      int leftChild = 2 * index + 1;
+      int rightChild = 2 * index + 2;
+      int smallest = index;
+
+      if (leftChild <= lastIndex && comparator(_heap[leftChild], _heap[smallest]) < 0) {
+        smallest = leftChild;
+      }
+      if (rightChild <= lastIndex && comparator(_heap[rightChild], _heap[smallest]) < 0) {
+        smallest = rightChild;
+      }
+      if (smallest == index) break;
+
+      _swap(index, smallest);
+      index = smallest;
+    }
+  }
+
+  // Elementləri yuxarıya doğru tənzimləyir (heap xassəsini qoruyur)
+  void _bubbleUp(int index) {
+    while (index > 0) {
+      int parent = (index - 1) ~/ 2;
+      if (comparator(_heap[index], _heap[parent]) >= 0) break;
+      _swap(index, parent);
+      index = parent;
+    }
+  }
+
+  void _swap(int i, int j) {
+    T temp = _heap[i];
+    _heap[i] = _heap[j];
+    _heap[j] = temp;
+  }
+}
