@@ -1,0 +1,30 @@
+
+// Time Complexity : O(N)
+// Space Complexity : O(N) 
+
+class Solution {
+  String reverseVowels(String s) {
+
+    int l = 0;
+    int r =  s.length -1;
+    final list = s.split('');
+
+    Set<String> vowels  = {'a', 'e', 'i', 'o', 'u' , 'A' , 'E' , 'I' , 'O' , 'U'};
+
+    while(l < r){
+
+        while(l < r && !vowels.contains(list[l])) l++;
+
+        while(l < r && !vowels.contains(list[r])) r--;
+
+        String temp = list[l];
+        list[l] = list[r];
+        list[r] = temp;
+
+        l++;
+        r--;
+
+    }
+    return list.join("");
+  }
+}
